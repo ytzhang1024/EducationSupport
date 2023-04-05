@@ -77,6 +77,26 @@
             android:layout_height="wrap_content"
             android:hint="Retype Your Password"
             android:inputType="textPassword" />
+
+        <RadioGroup
+            android:id="@+id/role"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/role_educator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Student" />
+
+            <RadioButton
+                android:id="@+id/role_student"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Educator" />
+        </RadioGroup>
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
