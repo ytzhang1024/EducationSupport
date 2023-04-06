@@ -31,6 +31,12 @@
             android:name=".activities.SignUpActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.StudentHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.EducatorHomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.MainActivity"
             android:exported="true"></activity>
     </application>
