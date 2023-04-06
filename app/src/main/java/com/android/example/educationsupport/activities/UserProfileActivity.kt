@@ -20,7 +20,7 @@ class UserProfileActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
 //    private lateinit var image: ImageView
 //    private lateinit var btnBrowse: Button
-    private val uemail = firebaseAuth.currentUser?.email
+    private val uemail = firebaseAuth.currentUser?.email // TODO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
