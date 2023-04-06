@@ -3,7 +3,6 @@ package com.android.example.educationsupport.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.android.example.educationsupport.databinding.ActivityTestDbactivityBinding
 import com.android.example.educationsupport.databinding.ActivityViewUserBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.auth.User
