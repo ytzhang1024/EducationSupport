@@ -44,17 +44,15 @@ class SignUpActivity : AppCompatActivity() {
                 if (pass == confirmPass) {
                     firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                         if (it.isSuccessful) {
-
                             val courseMap = hashMapOf(
-                                "user_email" to email,
                                 "role" to role
                             )
-
                             firestore.collection("user").document(email).set(courseMap).addOnSuccessListener {
                                 Toast.makeText(this, "Adding Successful", Toast.LENGTH_SHORT).show()
                             }.addOnFailureListener{
                                 Toast.makeText(this, "Adding Failure", Toast.LENGTH_SHORT).show()
                             }
+                            Toast.makeText(this, "Register Successful", Toast.LENGTH_SHORT).show()
 
                             val intent = Intent(this, SignInActivity::class.java)
                             startActivity(intent)
