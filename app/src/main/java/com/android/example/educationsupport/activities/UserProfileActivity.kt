@@ -21,6 +21,7 @@ class UserProfileActivity : AppCompatActivity() {
 //    private lateinit var image: ImageView
 //    private lateinit var btnBrowse: Button
     private val uemail = firebaseAuth.currentUser?.email // TODO
+    // add database
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
