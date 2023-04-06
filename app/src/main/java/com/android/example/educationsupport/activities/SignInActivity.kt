@@ -52,7 +52,7 @@ class SignInActivity : AppCompatActivity() {
         super.onStart()
 
         if(firebaseAuth.currentUser != null){
-            val intent = Intent(this, UserProfileActivity::class.java)
+            val intent = Intent(this, ViewUserActivity::class.java)
             startActivity(intent)
         }
     }

@@ -19,7 +19,6 @@ class TestDBActivity : AppCompatActivity() {
         binding = ActivityTestDbactivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         binding.button.setOnClickListener {
             val course = binding.courseET.text.toString()
             val courseMap = hashMapOf(
