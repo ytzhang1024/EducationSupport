@@ -21,7 +21,7 @@
         >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/selectedBtn"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
@@ -30,7 +30,7 @@
             android:textSize="15sp" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/allBtn"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
@@ -39,7 +39,7 @@
             android:textSize="15sp" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/marksBtn"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
@@ -48,7 +48,7 @@
             android:textSize="15sp" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/createBtn"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
