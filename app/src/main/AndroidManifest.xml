@@ -40,6 +40,9 @@
             android:name=".activities.EducatorHomeActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.AllCoursesActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.MainActivity"
             android:exported="true" />
     </application>
