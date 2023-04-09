@@ -39,11 +39,11 @@ class SignInActivity : AppCompatActivity() {
                         ref.get().addOnSuccessListener {
                             val role = it.data?.get("role").toString()
                             if(role == "Student"){
-                                val intent = Intent(this, DashboardActivity::class.java)
+                                val intent = Intent(this, MainActivity::class.java)
                                 startActivity(intent)
                             }
                             else{
-                                val intent = Intent(this, EducatorHomeActivity::class.java)
+                                val intent = Intent(this, MainActivity::class.java)
                                 startActivity(intent)
                             }
                         }
@@ -67,7 +67,7 @@ class SignInActivity : AppCompatActivity() {
         super.onStart()
 
         if(firebaseAuth.currentUser != null){
-            val intent = Intent(this, DashboardActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }
