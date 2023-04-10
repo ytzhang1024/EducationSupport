@@ -39,7 +39,7 @@ class SignInActivity : AppCompatActivity() {
                         ref.get().addOnSuccessListener {
                             val role = it.data?.get("role").toString()
                             if(role == "Student"){
-                                val intent = Intent(this, MainActivity::class.java)
+                                val intent = Intent(this, StudentHomeActivity::class.java)
                                 startActivity(intent)
                             }
                             else{
@@ -63,13 +63,13 @@ class SignInActivity : AppCompatActivity() {
 
 
 // 登录的缓存 login cache
-    override fun onStart() {
-        super.onStart()
-
-        if(firebaseAuth.currentUser != null){
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
-    }
+//    override fun onStart() {
+//        super.onStart()
+//
+//        if(firebaseAuth.currentUser != null){
+//            val intent = Intent(this, MainActivity::class.java)
+//            startActivity(intent)
+//        }
+//    }
 
 }
