@@ -13,5 +13,6 @@
     <color name="colorPrimaryDark">#00ceb4</color>
     <color name="colorAccent">#D81B60</color>
     <color name="cardColor">#ffffff</color>
+    <color name="deeppurple">#7c4dff</color>
     <color name="textcardColor">#3f3f3f</color>
 </resources>
