@@ -22,3 +22,4 @@ gradle/wrapper/gradle-wrapper.jar
 *.properties
 local.properties
 gradle/wrapper/gradle-wrapper.properties
+build.gradle
