@@ -32,17 +32,17 @@ class HomeFragment : Fragment(), View.OnClickListener {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        val btnCourse: Button = binding.btnCourse
-        btnCourse.setOnClickListener() {
-//            btnCourse.text = "Hello"
-            println("click")
-            val intent = Intent(activity, Module::class.java)
-            startActivity(intent)
-        }
+//        val textView: TextView = binding.textHome
+//        homeViewModel.text.observe(viewLifecycleOwner) {
+//            textView.text = it
+//        }
+//        val btnCourse: Button = binding.btnCourse
+//        btnCourse.setOnClickListener() {
+////            btnCourse.text = "Hello"
+//            println("click")
+//            val intent = Intent(activity, Module::class.java)
+//            startActivity(intent)
+//        }
         return root
     }
 

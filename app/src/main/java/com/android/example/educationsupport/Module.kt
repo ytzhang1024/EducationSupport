@@ -38,12 +38,6 @@ class Module : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-        when (p0?.id) {
-            R.id.btn_course -> {
-                val intent = Intent(this, Module::class.java)
-                startActivity(intent)
-                print("click button")
-            }
-        }
+//
     }
 }
