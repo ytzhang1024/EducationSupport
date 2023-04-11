@@ -43,7 +43,7 @@ class SignInActivity : AppCompatActivity() {
                                 startActivity(intent)
                             }
                             else{
-                                val intent = Intent(this, MainActivity::class.java)
+                                val intent = Intent(this, EducatorHomeActivity::class.java)
                                 startActivity(intent)
                             }
                         }
