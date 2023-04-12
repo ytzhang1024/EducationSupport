@@ -13,11 +13,11 @@
         android:theme="@style/Theme.Test">
         <activity
             android:name=".activities.QuestionActivity"
-            android:label="Question"
+            android:label="Quiz 1"
             android:exported="false" />
         <activity
             android:name=".activities.QuizActivity"
-            android:label="Quiz"
+            android:label="Activity 1"
             android:exported="false" />
         <activity
             android:name=".activities.ResultActivity"
