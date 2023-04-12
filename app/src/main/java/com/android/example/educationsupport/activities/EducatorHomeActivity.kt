@@ -24,8 +24,11 @@
 //}
 package com.android.example.educationsupport.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import com.android.example.educationsupport.R
 import com.android.example.educationsupport.databinding.ActivityEducatorHomeBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -34,7 +37,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 
-class EducatorHomeActivity : AppCompatActivity() {
+class EducatorHomeActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityEducatorHomeBinding
 
@@ -46,6 +49,13 @@ class EducatorHomeActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
+        val btnSelected = findViewById<Button>(R.id.selectedBtn)
+        btnSelected.setOnClickListener {
+            val intent = Intent(this, SelectedActivity::class.java)
+            startActivity(intent)
+        }
+
+
         val navController = findNavController(R.id.nav_host_fragment_activity_educator)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -56,5 +66,14 @@ class EducatorHomeActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onClick(p0: View?) {
+//        when(p0?.id) {
+//            R.id.selectedBtn -> {
+//                val intent = Intent(this, SelectedActivity::class.java)
+//                startActivity(intent)
+//            }
+//        }
     }
 }

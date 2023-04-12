@@ -38,11 +38,11 @@ class SignInActivity : AppCompatActivity() {
                         // Get role data from the database
                         ref.get().addOnSuccessListener {
                             val role = it.data?.get("role").toString()
-                            if(role == "Student"){
+                            if(role == "Student") {
                                 val intent = Intent(this, StudentHomeActivity::class.java)
                                 startActivity(intent)
                             }
-                            else{
+                            else {
                                 val intent = Intent(this, EducatorHomeActivity::class.java)
                                 startActivity(intent)
                             }
