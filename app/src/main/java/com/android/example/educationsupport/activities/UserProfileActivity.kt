@@ -13,14 +13,18 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class UserProfileActivity : AppCompatActivity() {
+
+
+open class UserProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityUserProfileBinding
     private val firestore = Firebase.firestore
-    private lateinit var firebaseAuth: FirebaseAuth
+//    private lateinit var firebaseAuth: FirebaseAuth
+    // Resolve that lateinit property firebaseAuth has not been initialized
+    private var firebaseAuth: FirebaseAuth? = null
 //    private lateinit var image: ImageView
 //    private lateinit var btnBrowse: Button
-    private val uemail = firebaseAuth.currentUser?.email
+    private val uemail = firebaseAuth?.currentUser?.email
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

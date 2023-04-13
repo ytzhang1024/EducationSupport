@@ -22,8 +22,10 @@
 //}
 package com.android.example.educationsupport.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import com.android.example.educationsupport.R
 import com.android.example.educationsupport.databinding.ActivityStudentHomeBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -43,6 +45,20 @@ class StudentHomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
+
+        //Jump to All courses page
+        val btnAll = findViewById<Button>(R.id.allBtn2)
+        btnAll.setOnClickListener {
+            val intent = Intent(this, AllCoursesActivity::class.java)
+            startActivity(intent)
+        }
+
+        //Jump to selected courses page
+        val btnSelected = findViewById<Button>(R.id.selectedBtn2)
+        btnSelected.setOnClickListener {
+            val intent = Intent(this, SelectedActivity::class.java)
+            startActivity(intent)
+        }
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each

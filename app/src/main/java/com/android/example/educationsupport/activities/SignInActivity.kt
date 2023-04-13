@@ -46,6 +46,10 @@ class SignInActivity : AppCompatActivity() {
                                 val intent = Intent(this, EducatorHomeActivity::class.java)
                                 startActivity(intent)
                             }
+//                            else {
+//                                val intent = Intent(this, DashboardActivity::class.java)
+//                                startActivity(intent)
+//                            }
                         }
 
 
