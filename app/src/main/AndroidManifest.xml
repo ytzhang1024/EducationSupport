@@ -12,13 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
         <activity
-            android:name=".activities.QuestionActivity"
-            android:label="Quiz 1"
+            android:name=".activities.CreateCourseActivity"
+            android:label="Create Course"
             android:exported="false" />
         <activity
+            android:name=".activities.CreateActivity"
+            android:exported="false"
+            android:label="Create Module" />
+        <activity
+            android:name=".activities.QuestionActivity"
+            android:exported="false"
+            android:label="Quiz 1" />
+        <activity
             android:name=".activities.QuizActivity"
-            android:label="Activity 1"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Activity 1" />
         <activity
             android:name=".activities.ResultActivity"
             android:exported="false" />

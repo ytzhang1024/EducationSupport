@@ -49,17 +49,24 @@ class EducatorHomeActivity : AppCompatActivity(), View.OnClickListener {
 
         val navView: BottomNavigationView = binding.navView
 
-        //Jump to All courses page
+//        Jump to All courses page
         val btnAll = findViewById<Button>(R.id.allBtn)
         btnAll.setOnClickListener {
             val intent = Intent(this, AllCoursesActivity::class.java)
             startActivity(intent)
         }
 
-        //Jump to selected courses page
+//        Jump to selected courses page
         val btnSelected = findViewById<Button>(R.id.selectedBtn)
         btnSelected.setOnClickListener {
             val intent = Intent(this, SelectedActivity::class.java)
+            startActivity(intent)
+        }
+
+//        Jump to create module page
+        val btnCreate = findViewById<Button>(R.id.createBtn)
+        btnCreate.setOnClickListener {
+            val intent = Intent(this, CreateActivity::class.java)
             startActivity(intent)
         }
 
