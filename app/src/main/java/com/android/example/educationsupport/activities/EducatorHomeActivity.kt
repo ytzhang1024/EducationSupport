@@ -66,7 +66,7 @@ class EducatorHomeActivity : AppCompatActivity(), View.OnClickListener {
 //        Jump to create module page
         val btnCreate = findViewById<Button>(R.id.createBtn)
         btnCreate.setOnClickListener {
-            val intent = Intent(this, CreateActivity::class.java)
+            val intent = Intent(this, CreateModuleActivity::class.java)
             startActivity(intent)
         }
 

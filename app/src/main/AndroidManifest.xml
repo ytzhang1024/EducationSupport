@@ -12,11 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
         <activity
-            android:name=".activities.CreateCourseActivity"
-            android:label="Create Course"
+            android:name=".activities.CreateActActivity"
+            android:label="Create Activity"
             android:exported="false" />
         <activity
-            android:name=".activities.CreateActivity"
+            android:name=".activities.CreateCourseActivity"
+            android:exported="false"
+            android:label="Create Course" />
+        <activity
+            android:name=".activities.CreateModuleActivity"
             android:exported="false"
             android:label="Create Module" />
         <activity
