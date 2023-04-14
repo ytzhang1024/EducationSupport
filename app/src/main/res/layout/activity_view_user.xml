@@ -7,7 +7,7 @@
     android:background="#F5F5F5"
     android:elevation="3dp"
     android:textAlignment="center"
-    tools:context=".activities.ViewUserActivity">
+    tools:context=".ui.dashboard.ViewUserActivity">
 
     <ScrollView
         android:layout_width="match_parent"

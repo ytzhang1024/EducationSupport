@@ -1,4 +1,4 @@
-package com.android.example.educationsupport.activities
+package com.android.example.educationsupport.ui.dashboard
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
