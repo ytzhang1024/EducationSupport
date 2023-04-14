@@ -1,4 +1,4 @@
-package com.android.example.educationsupport.ui.dashboard
+package com.android.example.educationsupport.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

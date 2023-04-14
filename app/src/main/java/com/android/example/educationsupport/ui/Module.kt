@@ -1,6 +1,5 @@
-package com.android.example.educationsupport
+package com.android.example.educationsupport.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.android.example.educationsupport.R
 import com.android.example.educationsupport.databinding.ActivityModuleBinding
 
 

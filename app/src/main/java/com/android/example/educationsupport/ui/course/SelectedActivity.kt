@@ -1,9 +1,10 @@
-package com.android.example.educationsupport.activities
+package com.android.example.educationsupport.ui.course
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.android.example.educationsupport.R
+import com.android.example.educationsupport.ui.quiz.UnitActivity
 import com.android.example.educationsupport.databinding.ActivitySelectedBinding
 import com.google.firebase.auth.FirebaseAuth
 

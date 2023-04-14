@@ -1,4 +1,4 @@
-package com.android.example.educationsupport
+package com.android.example.educationsupport.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

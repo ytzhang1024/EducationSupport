@@ -1,4 +1,4 @@
-package com.android.example.educationsupport.activities
+package com.android.example.educationsupport.ui.quiz
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

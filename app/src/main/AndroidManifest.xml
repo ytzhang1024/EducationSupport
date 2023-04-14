@@ -12,47 +12,44 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
         <activity
-            android:name=".activities.CreateActActivity"
+            android:name=".ui.quiz.CreateActActivity"
             android:label="Create Activity"
             android:exported="false" />
         <activity
-            android:name=".activities.CreateCourseActivity"
+            android:name=".ui.quiz.CreateCourseActivity"
             android:exported="false"
             android:label="Create Course" />
         <activity
-            android:name=".activities.CreateModuleActivity"
+            android:name=".ui.quiz.CreateModuleActivity"
             android:exported="false"
             android:label="Create Module" />
         <activity
-            android:name=".activities.QuestionActivity"
+            android:name=".ui.quiz.QuestionActivity"
             android:exported="false"
             android:label="Quiz 1" />
         <activity
-            android:name=".activities.QuizActivity"
+            android:name=".ui.quiz.QuizActivity"
             android:exported="false"
             android:label="Activity 1" />
         <activity
-            android:name=".activities.ResultActivity"
+            android:name=".ui.course.ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".Module"
+            android:name=".ui.Module"
             android:exported="false"
             android:label="@string/title_activity_module"
             android:theme="@style/Theme.Test.NoActionBar" />
         <activity
-            android:name=".activities.DashboardActivity"
+            android:name=".ui.dashboard.ViewUserActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.ViewUserActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.UserProfileActivity"
+            android:name=".ui.dashboard.UserProfileActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.TestDBActivity"
+            android:name=".ui.activities.TestDBActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.SignInActivity"
+            android:name=".ui.base.SignInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,27 +58,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.SignUpActivity"
+            android:name=".ui.base.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.StudentHomeActivity"
+            android:name=".ui.activities.StudentHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.EducatorHomeActivity"
+            android:name=".ui.activities.EducatorHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.AllCoursesActivity"
+            android:name=".ui.course.AllCoursesActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.UnitActivity"
+            android:name=".ui.quiz.UnitActivity"
             android:exported="false"
             android:label="Open Data" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true"
             android:label="@string/app_name" />
         <activity
-            android:name=".activities.SelectedActivity"
+            android:name=".ui.course.SelectedActivity"
             android:label="Selected Course" />
     </application>
 

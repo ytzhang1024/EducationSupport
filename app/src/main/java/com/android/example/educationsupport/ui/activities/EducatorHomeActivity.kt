@@ -22,7 +22,7 @@
 //
 //    }
 //}
-package com.android.example.educationsupport.activities
+package com.android.example.educationsupport.ui.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +36,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.android.example.educationsupport.ui.course.AllCoursesActivity
+import com.android.example.educationsupport.ui.course.SelectedActivity
+import com.android.example.educationsupport.ui.quiz.CreateModuleActivity
 
 class EducatorHomeActivity : AppCompatActivity(), View.OnClickListener {
 

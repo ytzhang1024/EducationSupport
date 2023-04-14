@@ -6,13 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.android.example.educationsupport.R
-import com.android.example.educationsupport.activities.UserProfileActivity
-import com.android.example.educationsupport.activities.ViewUserActivity
 import com.android.example.educationsupport.databinding.FragmentDashboardBinding
+import com.android.example.educationsupport.viewModel.DashboardViewModel
 
 
 class DashboardFragment : Fragment() {
