@@ -1,4 +1,4 @@
-package com.android.example.educationsupport.ui
+package com.android.example.educationsupport.ui.base
 
 import android.os.Bundle
 import android.view.View

@@ -35,7 +35,7 @@
             android:name=".ui.course.ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.Module"
+            android:name=".ui.base.Module"
             android:exported="false"
             android:label="@string/title_activity_module"
             android:theme="@style/Theme.Test.NoActionBar" />

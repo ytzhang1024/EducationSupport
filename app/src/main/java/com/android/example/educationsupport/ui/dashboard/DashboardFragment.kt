@@ -38,16 +38,6 @@ class DashboardFragment : Fragment() {
             val intent = Intent(activity, UserProfileActivity::class.java)
             startActivity(intent)
         }
-//        val btnProfile = findViewById<ImageButton>(R.id.profile)
-//        btnProfile.setOnClickListener {
-//            val intent = Intent(this, ViewUserActivity::class.java)
-//            startActivity(intent)
-//        }
-
-//        val textView: TextView = binding.textDashboard
-//        dashboardViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
         return root
     }
 
