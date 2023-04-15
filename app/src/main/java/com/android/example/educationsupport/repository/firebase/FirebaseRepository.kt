@@ -1,5 +1,6 @@
 package com.android.example.educationsupport.repository.firebase
 
+import com.android.example.educationsupport.repository.entity.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -11,6 +12,9 @@ import javax.inject.Singleton
 class FirebaseRepository @Inject constructor() {
     private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val firestore = Firebase.firestore
+    private val uemail = firebaseAuth?.currentUser?.email.toString()
+
+
 
     fun getFirebaseAuth(): FirebaseAuth {
         return firebaseAuth
@@ -19,4 +23,30 @@ class FirebaseRepository @Inject constructor() {
     fun getFireStore(): FirebaseFirestore {
         return firestore
     }
+
+    fun saveUserProfile(usermap: HashMap<String, String>) {
+        if (uemail != null) {
+            firestore.collection("user").document(uemail).update(usermap as Map<String, Any>)
+        }
+    }
+
+    fun getUserProfileByCurrentUser(): User? {
+        val ref = firestore.collection("user").document(uemail)
+        var user: User? = null
+        var first_name = ""
+        var last_name = ""
+        var bio = ""
+        var role = ""
+        ref.get().addOnSuccessListener { documentSnapshot ->
+//            if (it != null) {
+//                first_name = it.data?.get("firstName").toString()
+//                last_name = it.data?.get("lastName").toString()
+//                bio = it.data?.get("bio").toString()
+//                role  = it.data?.get("role").toString()
+//            }
+        }
+        user = User(first_name, last_name, bio, role)
+        return user
+    }
+
 }

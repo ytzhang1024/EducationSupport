@@ -8,15 +8,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.android.example.educationsupport.ui.activities.EducatorHomeActivity
 import com.android.example.educationsupport.ui.activities.StudentHomeActivity
 import com.android.example.educationsupport.databinding.ActivitySignInBinding
+import com.android.example.educationsupport.repository.firebase.FirebaseRepository
 import com.android.example.educationsupport.viewModel.SignInViewModel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 
 
 class SignInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignInBinding
+    private val firebaseRepository = FirebaseRepository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,17 +30,33 @@ class SignInActivity : AppCompatActivity() {
         val viewModel = ViewModelProvider(this)[SignInViewModel::class.java]
 
         binding.button.setOnClickListener {
-            val Info = viewModel.UserSignIn(binding)
+            val email = binding.emailEt.text.toString()
+            val pass = binding.passET.text.toString()
 
-            if (Info == "Student") {
-                val intent = Intent(this, StudentHomeActivity::class.java)
-                startActivity(intent)
-            } else if (Info == "Educator") {
-                val intent = Intent(this, EducatorHomeActivity::class.java)
-                startActivity(intent)
+            if (email.isNotEmpty() && pass.isNotEmpty()) {
+                val ref = firebaseRepository.getFireStore().collection("user").document(email)
+                firebaseRepository.getFirebaseAuth().signInWithEmailAndPassword(email, pass).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        // Get role data from the database
+                        ref.get().addOnSuccessListener {
+                            val role = it.data?.get("role").toString()
+                            if(role == "Student"){
+                                val intent = Intent(this, StudentHomeActivity::class.java)
+                                startActivity(intent)
+                            }
+                            else{
+                                val intent = Intent(this, EducatorHomeActivity::class.java)
+                                startActivity(intent)
+                            }
+                        }
+                    } else {
+                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } else {
+                Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
             }
 
-            Toast.makeText(this, Info, Toast.LENGTH_SHORT).show()
         }
     }
 
