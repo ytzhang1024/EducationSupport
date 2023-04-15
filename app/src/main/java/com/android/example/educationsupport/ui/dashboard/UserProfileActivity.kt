@@ -32,9 +32,9 @@ open class UserProfileActivity : AppCompatActivity() {
 //        println("test")
 //        println(viewModel.getRes())
 
-//        binding.etFirstName.setText("FirstName")
-//        binding.etLastName.setText("LastName")
-//        binding.etBio.setText("bio")
+        binding.etFirstName.setText("FirstName")
+        binding.etLastName.setText("LastName")
+        binding.etBio.setText("bio")
 
 
         binding.saveBtn.setOnClickListener {
