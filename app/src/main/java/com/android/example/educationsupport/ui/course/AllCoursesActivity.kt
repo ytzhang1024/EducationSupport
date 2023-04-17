@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.android.example.educationsupport.R
 import com.android.example.educationsupport.databinding.ActivityQuizBinding
-import com.android.example.educationsupport.databinding.ActivityUserProfileBinding
+
 
 class AllCoursesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityQuizBinding

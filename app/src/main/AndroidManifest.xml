@@ -12,9 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
         <activity
-            android:name=".ui.quiz.CreateActActivity"
-            android:label="Create Activity"
+            android:name=".ui.course.StudentMarkListActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.course.CourseResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.quiz.CreateActActivity"
+            android:exported="false"
+            android:label="Create Activity" />
         <activity
             android:name=".ui.quiz.CreateCourseActivity"
             android:exported="false"

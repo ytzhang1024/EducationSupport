@@ -12,6 +12,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.android.example.educationsupport.R
 import com.android.example.educationsupport.databinding.ActivityStudentHomeBinding
 import com.android.example.educationsupport.ui.course.AllCoursesActivity
+import com.android.example.educationsupport.ui.course.CourseResultActivity
 import com.android.example.educationsupport.ui.course.SelectedActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -38,6 +39,13 @@ class StudentHomeActivity : AppCompatActivity() {
         val btnSelected = findViewById<Button>(R.id.selectedBtn2)
         btnSelected.setOnClickListener {
             val intent = Intent(this, SelectedActivity::class.java)
+            startActivity(intent)
+        }
+
+        //Jump to course result page
+        val btnCourseResult = findViewById<Button>(R.id.marksBtn2)
+        btnCourseResult.setOnClickListener {
+            val intent = Intent(this, CourseResultActivity::class.java)
             startActivity(intent)
         }
 
