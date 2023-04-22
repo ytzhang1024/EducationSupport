@@ -16,5 +16,14 @@
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.291"
       tools:layout_editor_absoluteX="0dp" />
+  <Button
+      android:id="@+id/btn_addStudent"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Add student"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/btn_activity"
+      app:layout_constraintVertical_bias="0.291"
+      tools:layout_editor_absoluteX="0dp" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>

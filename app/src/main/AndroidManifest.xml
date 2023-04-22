@@ -86,6 +86,9 @@
         <activity
             android:name=".ui.course.SelectedActivity"
             android:label="Selected Course" />
+        <activity
+            android:name=".ui.student.AddStudentActivity"
+            android:label="Selected Course" />
     </application>
 
 </manifest>

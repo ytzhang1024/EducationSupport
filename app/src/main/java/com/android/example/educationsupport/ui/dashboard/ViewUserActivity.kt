@@ -14,7 +14,8 @@ import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class ViewUserActivity : AppCompatActivity() {
+class
+ViewUserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityViewUserBinding
     private lateinit var auth: FirebaseAuth
