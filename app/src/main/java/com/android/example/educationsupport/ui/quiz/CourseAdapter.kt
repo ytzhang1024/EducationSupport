@@ -8,11 +8,25 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.example.educationsupport.R
 import com.android.example.educationsupport.repository.entity.Course
 
-class CourseAdapter(private val courseList:ArrayList<Course>) : RecyclerView.Adapter<CourseAdapter.CourseViewHolder>() {
-    class CourseViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+class CourseAdapter(private val courseList:ArrayList<Course>, private val listener: OnItemClickListener
+) : RecyclerView.Adapter<CourseAdapter.CourseViewHolder>() {
+    inner class CourseViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         val courseName: TextView = itemView.findViewById(R.id.courseName)
         val tutor: TextView = itemView.findViewById(R.id.tutor)
         val description: TextView = itemView.findViewById(R.id.description)
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(p0: View?) {
+            val pos: Int = adapterPosition
+            if (pos != RecyclerView.NO_POSITION) {
+                listener.onItemClick(pos)
+            }
+        }
+    }
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseViewHolder {
