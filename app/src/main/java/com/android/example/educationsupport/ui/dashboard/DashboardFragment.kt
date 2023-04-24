@@ -9,12 +9,15 @@ import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.android.example.educationsupport.databinding.FragmentDashboardBinding
+import com.android.example.educationsupport.repository.firebase.FirebaseRepository
+import com.android.example.educationsupport.ui.base.SignInActivity
 import com.android.example.educationsupport.viewModel.DashboardViewModel
 
 
 class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
+    private val firebaseRepository = FirebaseRepository()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -37,6 +40,26 @@ class DashboardFragment : Fragment() {
             //println("click")
             val intent = Intent(activity, UserProfileActivity::class.java)
             startActivity(intent)
+        }
+
+        val btnViewUserCard: ImageButton = binding.card
+        btnViewUserCard.setOnClickListener() {
+            val intent = Intent(activity, ViewUserActivity::class.java)
+            startActivity(intent)
+        }
+
+
+        //点击logout销毁所有的数据
+        val btnLogout: ImageButton = binding.logout
+        btnLogout.setOnClickListener() {
+            if (firebaseRepository.getFirebaseAuth().currentUser != null){
+                firebaseRepository.getFirebaseAuth().signOut()
+                this.onDestroy()
+                val intent = Intent(activity, SignInActivity::class.java)
+                startActivity(intent)
+            }else{
+//                Toast.makeText(this, "You aren't login Yet!", Toast.LENGTH_SHORT).show()
+            }
         }
         return root
     }

@@ -37,7 +37,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.android.example.educationsupport.ui.course.AllCoursesActivity
+import com.android.example.educationsupport.ui.course.CourseResultActivity
 import com.android.example.educationsupport.ui.course.SelectedActivity
+import com.android.example.educationsupport.ui.course.StudentMarkListActivity
 import com.android.example.educationsupport.ui.quiz.CreateModuleActivity
 
 class EducatorHomeActivity : AppCompatActivity(), View.OnClickListener {
@@ -70,6 +72,13 @@ class EducatorHomeActivity : AppCompatActivity(), View.OnClickListener {
         val btnCreate = findViewById<Button>(R.id.createBtn)
         btnCreate.setOnClickListener {
             val intent = Intent(this, CreateModuleActivity::class.java)
+            startActivity(intent)
+        }
+
+//        Jump to course result page
+        val btnCourseResult = findViewById<Button>(R.id.marksBtn)
+        btnCourseResult.setOnClickListener {
+            val intent = Intent(this, StudentMarkListActivity::class.java)
             startActivity(intent)
         }
 
