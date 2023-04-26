@@ -16,3 +16,4 @@ class AllCoursesActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 }
+
