@@ -1,19 +1,22 @@
 package com.android.example.educationsupport.ui.quiz
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.example.educationsupport.R
 import com.android.example.educationsupport.databinding.ActivityCreateActBinding
 import com.android.example.educationsupport.repository.entity.Course
+import com.android.example.educationsupport.ui.home.HomeEducatorFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class CreateActActivity : AppCompatActivity() {
+class CreateActActivity : AppCompatActivity(), CourseAdapter.OnItemClickListener {
 
     private lateinit var binding: ActivityCreateActBinding
     private lateinit var firebaseAuth: FirebaseAuth
@@ -40,10 +43,17 @@ class CreateActActivity : AppCompatActivity() {
                         courseList.add(course)
                     }
                 }
-                recyclerView.adapter = CourseAdapter(courseList)
+                recyclerView.adapter = CourseAdapter(courseList, this)
             }
         }.addOnFailureListener {
             Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onItemClick(position: Int) {
+        Toast.makeText(this, "Item $position clicked", Toast.LENGTH_SHORT).show()
+        val clickedItem = courseList[position]
+        clickedItem.name = "clicked"
+        recyclerView.adapter?.notifyItemChanged(position)
     }
 }
