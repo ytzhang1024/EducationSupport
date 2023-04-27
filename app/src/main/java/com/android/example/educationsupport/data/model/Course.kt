@@ -1,4 +1,4 @@
-package com.android.example.educationsupport.repository.entity
+package com.android.example.educationsupport.data.model
 
 class Course (
     var courseId: String = "",

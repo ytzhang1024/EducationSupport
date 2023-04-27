@@ -24,48 +24,26 @@ class SelectedActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_selected)
-
         binding = ActivitySelectedBinding.inflate(layoutInflater)
         setContentView(binding.root)
         firebaseAuth = FirebaseAuth.getInstance()
 
-        // multiple buttons to jump to the same page
-//        callData().forEach(data -> {
-//            val button = new Button(data.name)
-//            button.onclick{
-//                unitActivityPage()
-//            }
-//        })
         //Showing selected
-        val courseId = FirebaseAuth.getInstance().currentUser!!.uid
-        println(courseId)
-        val ref = firestore.collection("course").document(courseId)
-        ref.get().addOnSuccessListener {
-            if (it != null) {
-                  course_name = it.data?.get("name").toString()
-//                val full_name = it.data?.get("firstName").toString() + " " + it.data?.get("lastName").toString()
-//                val bio = it.data?.get("bio").toString()
-//                val role  = it.data?.get("role").toString()
-//
-                  binding.btnCoursetest.setText(course_name)
-//                binding.tvEmail.setText(u_email)
-//                binding.userBio.setText(bio)
-//                binding.userRole.setText(role)
-            }
-        }
-                    .addOnFailureListener {
-                        Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show() }
-
-//        binding.btnCourse.setOnClickListener {
-//            unitActivityPage()
+//        val courseId = FirebaseAuth.getInstance().currentUser!!.uid
+//        println(courseId)
+//        val ref = firestore.collection("course").document(courseId)
+//        ref.get().addOnSuccessListener {
+//            if (it != null) {
+//                  course_name = it.data?.get("name").toString()
+//                  binding.btnCoursetest.setText(course_name)
+//            }
+//        }.addOnFailureListener { Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show() }
+//        binding.btnCoursetest.setOnClickListener {
+//            val intent = Intent(this, UnitActivity::class.java)
+//            //Passing on values
+//            intent.putExtra("course_name",course_name)
+//            startActivity(intent)
 //        }
-        binding.btnCoursetest.setOnClickListener {
-            val intent = Intent(this, UnitActivity::class.java)
-            //Passing on values
-            intent.putExtra("course_name",course_name)
-            startActivity(intent)
-        }
     }
 
 

@@ -1,14 +1,10 @@
 package com.android.example.educationsupport.ui.dashboard
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.android.example.educationsupport.databinding.ActivityUserProfileBinding
-import com.android.example.educationsupport.repository.entity.User
-import com.android.example.educationsupport.repository.firebase.FirebaseRepository
-import com.android.example.educationsupport.ui.course.ResultActivity
-import com.android.example.educationsupport.viewModel.UserProfileViewModel
+import com.android.example.educationsupport.data.repository.FirebaseRepository
 
 
 open class UserProfileActivity : AppCompatActivity() {

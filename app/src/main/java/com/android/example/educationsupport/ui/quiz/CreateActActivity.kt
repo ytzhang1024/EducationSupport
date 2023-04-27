@@ -8,9 +8,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.example.educationsupport.R
+import com.android.example.educationsupport.data.model.Course
 import com.android.example.educationsupport.databinding.ActivityCreateActBinding
-import com.android.example.educationsupport.repository.entity.Course
-import com.android.example.educationsupport.ui.home.HomeEducatorFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.example.educationsupport.R
-import com.android.example.educationsupport.repository.entity.Course
+import com.android.example.educationsupport.data.model.Course
 
 class CourseAdapter(private val courseList:ArrayList<Course>, private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<CourseAdapter.CourseViewHolder>() {

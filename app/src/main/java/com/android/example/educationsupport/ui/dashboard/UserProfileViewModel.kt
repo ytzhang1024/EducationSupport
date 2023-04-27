@@ -1,18 +1,15 @@
-package com.android.example.educationsupport.viewModel
+package com.android.example.educationsupport.ui.dashboard
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.android.example.educationsupport.databinding.ActivityUserProfileBinding
-import com.android.example.educationsupport.repository.entity.User
-import com.android.example.educationsupport.repository.firebase.FirebaseRepository
+import com.android.example.educationsupport.data.model.User
+import com.android.example.educationsupport.data.repository.FirebaseRepository
 import com.google.firebase.firestore.DocumentSnapshot
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import java.io.IOException
-import java.util.Objects
 
 class UserProfileViewModel: ViewModel() {
     private val firebaseRepository = FirebaseRepository()

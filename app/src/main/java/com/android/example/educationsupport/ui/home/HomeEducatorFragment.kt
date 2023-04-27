@@ -14,7 +14,7 @@ import com.android.example.educationsupport.ui.course.AllCoursesActivity
 import com.android.example.educationsupport.ui.course.SelectedActivity
 import com.android.example.educationsupport.ui.course.StudentMarkListActivity
 import com.android.example.educationsupport.ui.quiz.CreateModuleActivity
-import com.android.example.educationsupport.viewModel.HomeViewModel
+import com.android.example.educationsupport.ui.home.HomeViewModel
 
 
 
