@@ -18,6 +18,7 @@ class CreateCourseActivity : AppCompatActivity() {
     private val firestore = Firebase.firestore
     private lateinit var auth: FirebaseAuth
     private lateinit var tutor_email: String
+    private lateinit var courseMap: HashMap<String,String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +34,7 @@ class CreateCourseActivity : AppCompatActivity() {
             auth = FirebaseAuth.getInstance()
             tutor_email = auth.currentUser?.email.toString()
 
-            val courseMap = hashMapOf (
+            courseMap = hashMapOf (
                 "tutor" to tutor,
                 "name" to name,
                 "description" to description,
@@ -51,4 +52,10 @@ class CreateCourseActivity : AppCompatActivity() {
         }
 
     }
+
+    //Set courseMap as a global variable
+    companion object {
+        val courseMap = HashMap<String,String>()
+    }
+
 }

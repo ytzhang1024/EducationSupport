@@ -69,6 +69,8 @@ class SelectedActivity : AppCompatActivity() {
     }
 
 
+
+    // multiple buttons to jump to the same page
     fun unitActivityPage() {
         val intent = Intent(this, UnitActivity::class.java)
         startActivity(intent)

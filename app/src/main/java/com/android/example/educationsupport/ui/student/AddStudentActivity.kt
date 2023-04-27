@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.Toast
 import com.android.example.educationsupport.R
 import com.android.example.educationsupport.databinding.ActivityAddStudentBinding
+import com.android.example.educationsupport.ui.quiz.CreateCourseActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -25,7 +26,7 @@ class AddStudentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_course)
         binding = ActivityAddStudentBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //通过学生邮箱添加学生，学生账号会增加课程姓名（课程ID）
+        //Adding students via student email
         val btnSubmit = findViewById<Button>(R.id.btnSubmitCourse)
         btnSubmit.setOnClickListener {
             val student_email = binding.studentEmailET.text.toString()
@@ -35,15 +36,26 @@ class AddStudentActivity : AppCompatActivity() {
                 course_name = bundle!!.getString("course_name").toString()
             }
 
-            val courseMap = hashMapOf (
+            val studentCourseMap = hashMapOf (
                 " course_name" to  course_name
             )
+           // CreateCourseActivity.courseMap?.put("student_email" , student_email)
+            println(CreateCourseActivity.courseMap)
+
+//            firestore.collection("student course").document(student_email).set(studentCourseMap).addOnSuccessListener {
+//                Toast.makeText(this, "Successful Add Student!", Toast.LENGTH_SHORT).show()
+//            }.addOnFailureListener {
+//                Toast.makeText(this, "Fail Add Student!", Toast.LENGTH_SHORT).show()
+//            }
+
             val courseId = FirebaseAuth.getInstance().currentUser!!.uid
 
-            firestore.collection("student course").document(student_email).set(courseMap).addOnSuccessListener {
-                Toast.makeText(this, "Successful Add Student!", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener {
-                Toast.makeText(this, "Fail Add Student!", Toast.LENGTH_SHORT).show()
+            CreateCourseActivity.courseMap?.let { it1 ->
+                firestore.collection("course").document(courseId).set(it1).addOnSuccessListener {
+                    Toast.makeText(this, "Successful Create Course!", Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Fail Create Course!", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 

@@ -28,27 +28,6 @@ class StudentHomeActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
-        //Jump to All courses page
-        val btnAll = findViewById<Button>(R.id.allBtn2)
-        btnAll.setOnClickListener {
-            val intent = Intent(this, AllCoursesActivity::class.java)
-            startActivity(intent)
-        }
-
-        //Jump to selected courses page
-        val btnSelected = findViewById<Button>(R.id.selectedBtn2)
-        btnSelected.setOnClickListener {
-            val intent = Intent(this, SelectedActivity::class.java)
-            startActivity(intent)
-        }
-
-        //Jump to course result page
-        val btnCourseResult = findViewById<Button>(R.id.marksBtn2)
-        btnCourseResult.setOnClickListener {
-            val intent = Intent(this, CourseResultActivity::class.java)
-            startActivity(intent)
-        }
-
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
