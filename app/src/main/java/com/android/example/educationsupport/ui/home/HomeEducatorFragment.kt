@@ -57,6 +57,7 @@ class HomeEducatorFragment : Fragment(), View.OnClickListener {
             startActivity(intent)
         }
 
+
 //        Jump to course result page
         val btnCourseResult: Button = binding.marksBtn
         btnCourseResult.setOnClickListener {
