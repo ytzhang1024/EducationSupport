@@ -1,4 +1,5 @@
-package com.android.example.educationsupport.repository.entity
+package com.android.example.educationsupport.data.model
+
 
 data class User(
     var firstName: String? = null,
@@ -6,4 +7,3 @@ data class User(
     var bio: String ?= null,
     var role: String ?= null
 )
-

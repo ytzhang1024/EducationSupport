@@ -1,9 +1,9 @@
-package com.android.example.educationsupport.viewModel
+package com.android.example.educationsupport.ui.base
 
 import android.widget.RadioButton
 import androidx.lifecycle.ViewModel
 import com.android.example.educationsupport.databinding.ActivitySignUpBinding
-import com.android.example.educationsupport.repository.firebase.FirebaseRepository
+import com.android.example.educationsupport.data.repository.FirebaseRepository
 
 class SignUpViewModel : ViewModel() {
     private val firebaseRepository = FirebaseRepository()

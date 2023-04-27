@@ -3,11 +3,9 @@ package com.android.example.educationsupport.ui.base
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.RadioButton
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.android.example.educationsupport.databinding.ActivitySignUpBinding
-import com.android.example.educationsupport.viewModel.SignUpViewModel
 
 class SignUpActivity : AppCompatActivity() {
 

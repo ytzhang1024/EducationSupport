@@ -9,9 +9,8 @@ import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.android.example.educationsupport.databinding.FragmentDashboardBinding
-import com.android.example.educationsupport.repository.firebase.FirebaseRepository
+import com.android.example.educationsupport.data.repository.FirebaseRepository
 import com.android.example.educationsupport.ui.base.SignInActivity
-import com.android.example.educationsupport.viewModel.DashboardViewModel
 
 
 class DashboardFragment : Fragment() {

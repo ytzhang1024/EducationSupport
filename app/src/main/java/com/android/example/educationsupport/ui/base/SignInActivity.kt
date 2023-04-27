@@ -1,15 +1,14 @@
 package com.android.example.educationsupport.ui.base
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.android.example.educationsupport.databinding.ActivitySignInBinding
+import com.android.example.educationsupport.data.repository.FirebaseRepository
 import com.android.example.educationsupport.ui.activities.EducatorHomeActivity
 import com.android.example.educationsupport.ui.activities.StudentHomeActivity
-import com.android.example.educationsupport.databinding.ActivitySignInBinding
-import com.android.example.educationsupport.repository.firebase.FirebaseRepository
-import com.android.example.educationsupport.viewModel.SignInViewModel
 
 
 class SignInActivity : AppCompatActivity() {
@@ -64,11 +63,15 @@ class SignInActivity : AppCompatActivity() {
 // 登录的缓存 login cache
 //    override fun onStart() {
 //        super.onStart()
-//
-//        if(firebaseAuth.currentUser != null){
+//        if(firebaseRepository.getFirebaseAuth().currentUser != null){
 //            val intent = Intent(this, MainActivity::class.java)
 //            startActivity(intent)
 //        }
 //    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
+    }
 
 }
