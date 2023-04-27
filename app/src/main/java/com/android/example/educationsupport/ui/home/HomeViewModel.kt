@@ -3,8 +3,12 @@ package com.android.example.educationsupport.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.HiltAndroidApp
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(
+
+): ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"

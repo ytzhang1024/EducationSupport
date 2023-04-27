@@ -8,16 +8,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.android.example.educationsupport.R
 import com.android.example.educationsupport.databinding.FragmentEducatorHomeBinding
-import com.android.example.educationsupport.ui.course.AllCoursesActivity
-import com.android.example.educationsupport.ui.course.SelectedActivity
-import com.android.example.educationsupport.ui.course.StudentMarkListActivity
-import com.android.example.educationsupport.ui.quiz.CreateModuleActivity
-import com.android.example.educationsupport.ui.home.HomeViewModel
+import com.android.example.educationsupport.ui.course.TutorCourseActivity
+import com.android.example.educationsupport.ui.quiz.CreateCourseActivity
 
 
-
+//@AndroidEntryPoint
 class HomeEducatorFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentEducatorHomeBinding? = null
@@ -37,33 +33,34 @@ class HomeEducatorFragment : Fragment(), View.OnClickListener {
         _binding = FragmentEducatorHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         //        Jump to All courses page
-        val btnAll: Button = binding.allBtn
-        btnAll.setOnClickListener {
-            val intent = Intent(activity, AllCoursesActivity::class.java)
-            startActivity(intent)
-        }
+//        val btnAll: Button = binding.allBtn
+//        btnAll.setOnClickListener {
+//            val intent = Intent(activity, AllCoursesActivity::class.java)
+//            startActivity(intent)
+//        }
 
 //        Jump to selected courses page
-        val btnSelected: Button = binding.selectedBtn
-        btnSelected.setOnClickListener {
-            val intent = Intent(activity, SelectedActivity::class.java)
+        val btnMyCourse: Button = binding.myCourseBtn
+        btnMyCourse.setOnClickListener {
+            val intent = Intent(activity, TutorCourseActivity::class.java)
             startActivity(intent)
         }
 
 //        Jump to create module page
-        val btnCreate: Button = binding.createBtn
+        val btnCreate: Button = binding.courseManagementBtn
         btnCreate.setOnClickListener {
-            val intent = Intent(activity, CreateModuleActivity::class.java)
+//            val intent = Intent(activity, CreateModuleActivity::class.java)
+            val intent = Intent(activity, CreateCourseActivity::class.java)
             startActivity(intent)
         }
 
 
-//        Jump to course result page
-        val btnCourseResult: Button = binding.marksBtn
-        btnCourseResult.setOnClickListener {
-            val intent = Intent(activity, StudentMarkListActivity::class.java)
-            startActivity(intent)
-        }
+//        Jump to student management page
+//        val btnCourseResult: Button = binding.studentManagementBtn
+//        btnCourseResult.setOnClickListener {
+//            val intent = Intent(activity, StudentManagementActivity::class.java)
+//            startActivity(intent)
+//        }
 
 //        val textView: TextView = binding.textHome
 //        homeViewModel.text.observe(viewLifecycleOwner) {

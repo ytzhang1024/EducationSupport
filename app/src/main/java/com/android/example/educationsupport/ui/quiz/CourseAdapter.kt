@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.example.educationsupport.R
 import com.android.example.educationsupport.data.model.Course
 
-class CourseAdapter(private val courseList:ArrayList<Course>, private val listener: OnItemClickListener
+class CourseAdapter(
+    private val courseList:ArrayList<Course>, private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<CourseAdapter.CourseViewHolder>() {
+
     inner class CourseViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         val courseName: TextView = itemView.findViewById(R.id.courseName)
         val tutor: TextView = itemView.findViewById(R.id.tutor)
@@ -40,7 +42,7 @@ class CourseAdapter(private val courseList:ArrayList<Course>, private val listen
 
     override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
         holder.courseName.text = courseList[position].name
-        holder.tutor.text = courseList[position].tutor
+        holder.tutor.text = courseList[position].tutorEmail
         holder.description.text = courseList[position].description
     }
 }

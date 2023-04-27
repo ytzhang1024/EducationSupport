@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import com.android.example.educationsupport.R
 import com.android.example.educationsupport.databinding.ActivityCourseResultBinding
-import com.android.example.educationsupport.databinding.ActivityQuizBinding
+import com.android.example.educationsupport.databinding.ActivityCourseBinding
 import com.android.example.educationsupport.databinding.ActivityStudentMarkListBinding
 
 

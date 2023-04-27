@@ -3,16 +3,22 @@ package com.android.example.educationsupport.ui.dashboard
 import androidx.lifecycle.ViewModel
 import com.android.example.educationsupport.databinding.ActivityUserProfileBinding
 import com.android.example.educationsupport.data.model.User
-import com.android.example.educationsupport.data.repository.FirebaseRepository
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import java.io.IOException
 
 class UserProfileViewModel: ViewModel() {
-    private val firebaseRepository = FirebaseRepository()
+    private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val firestore = Firebase.firestore
+    private val uemail = firebaseAuth?.currentUser?.email.toString()
+
     private lateinit var user: User
     private var res: DocumentSnapshot? = null
 
@@ -30,12 +36,18 @@ class UserProfileViewModel: ViewModel() {
             "bio" to bio
         )
 
-        firebaseRepository.saveUserProfile(usermap)
+        saveUserProfile(usermap)
     }
 
 //    fun getUserProfile(){
 //        this.user = firebaseRepository.getUserProfileByCurrentUser()!!
 //    }
+
+    fun saveUserProfile(usermap: HashMap<String, String>) {
+        if (uemail != null) {
+            firestore.collection("user").document(uemail).update(usermap as Map<String, Any>)
+        }
+    }
 
     suspend fun getUserProfile(){
 
@@ -56,8 +68,15 @@ class UserProfileViewModel: ViewModel() {
 //        println("333")
 //        println(this.user)
 
-        this.res = firebaseRepository.getUserProfileByCurrentUser()!!
+        this.res = getUserProfileByCurrentUser()!!
         println(this.res)
+    }
+
+
+    suspend fun getUserProfileByCurrentUser(): DocumentSnapshot? {
+        val ref = firestore.collection("user").document(uemail)
+        val res = ref.get().await()
+        return res
     }
 
     fun test() {

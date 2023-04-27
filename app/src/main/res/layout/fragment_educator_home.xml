@@ -20,40 +20,41 @@
         >
 
         <Button
-            android:id="@+id/selectedBtn"
+            android:id="@+id/courseManagementBtn"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="5sp"
-            android:text="Selected Courses"
+            android:text="Course Management"
+            android:textSize="15sp" />
+
+<!--        <Button-->
+<!--            android:id="@+id/allBtn"-->
+<!--            android:layout_rowWeight="1"-->
+<!--            android:layout_columnWeight="1"-->
+<!--            android:layout_gravity="fill"-->
+<!--            android:layout_margin="5sp"-->
+<!--            android:text="All Courses"-->
+<!--            android:textSize="15sp" />-->
+        <Button
+            android:id="@+id/myCourseBtn"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:layout_margin="5sp"
+            android:text="My Course"
             android:textSize="15sp" />
 
         <Button
-            android:id="@+id/allBtn"
+            android:id="@+id/studentManagementBtn"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="5sp"
-            android:text="All Courses"
+            android:text="Student Management"
             android:textSize="15sp" />
 
-        <Button
-            android:id="@+id/marksBtn"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill"
-            android:layout_margin="5sp"
-            android:text="Course Marks"
-            android:textSize="15sp" />
 
-        <Button
-            android:id="@+id/createBtn"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill"
-            android:layout_margin="5sp"
-            android:text="Create Module"
-            android:textSize="15sp" />
 
     </GridLayout>
 

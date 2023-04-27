@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.android.example.educationsupport.databinding.ActivityUserProfileBinding
-import com.android.example.educationsupport.data.repository.FirebaseRepository
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 open class UserProfileActivity : AppCompatActivity() {
-
+    private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val firestore = Firebase.firestore
+    private val uemail = firebaseAuth?.currentUser?.email.toString()
     private lateinit var binding: ActivityUserProfileBinding
-    private val firebaseRepository = FirebaseRepository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val viewModel = ViewModelProvider(this)[UserProfileViewModel::class.java]
@@ -18,8 +21,8 @@ open class UserProfileActivity : AppCompatActivity() {
         binding = ActivityUserProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val uemail = firebaseRepository.getFirebaseAuth()?.currentUser?.email.toString()
-        val ref = firebaseRepository.getFireStore().collection("user").document(uemail)
+        val uemail = firebaseAuth?.currentUser?.email.toString()
+        val ref = firestore.collection("user").document(uemail)
         ref.get().addOnSuccessListener {
             binding.etFirstName.setText(it.data?.get("firstName").toString())
             binding.etLastName.setText(it.data?.get("lastName").toString())

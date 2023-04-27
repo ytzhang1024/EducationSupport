@@ -11,12 +11,17 @@ import androidx.lifecycle.ViewModelProvider
 import com.android.example.educationsupport.databinding.FragmentDashboardBinding
 import com.android.example.educationsupport.data.repository.FirebaseRepository
 import com.android.example.educationsupport.ui.base.SignInActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class DashboardFragment : Fragment() {
-
+    private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val firestore = Firebase.firestore
+    private val uemail = firebaseAuth?.currentUser?.email.toString()
     private var _binding: FragmentDashboardBinding? = null
-    private val firebaseRepository = FirebaseRepository()
+
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -51,8 +56,8 @@ class DashboardFragment : Fragment() {
         //点击logout销毁所有的数据
         val btnLogout: ImageButton = binding.logout
         btnLogout.setOnClickListener() {
-            if (firebaseRepository.getFirebaseAuth().currentUser != null){
-                firebaseRepository.getFirebaseAuth().signOut()
+            if (firebaseAuth.currentUser != null){
+                firebaseAuth.signOut()
                 this.onDestroy()
                 val intent = Intent(activity, SignInActivity::class.java)
                 startActivity(intent)

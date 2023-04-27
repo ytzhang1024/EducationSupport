@@ -1,14 +1,11 @@
 package com.android.example.educationsupport.ui.dashboard
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import com.android.example.educationsupport.R
 import com.android.example.educationsupport.databinding.ActivityViewUserBinding
-import com.android.example.educationsupport.ui.activities.MainActivity
-import com.android.example.educationsupport.ui.course.CourseResultActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore

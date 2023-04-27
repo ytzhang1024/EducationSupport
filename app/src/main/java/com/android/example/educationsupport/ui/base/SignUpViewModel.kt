@@ -3,10 +3,14 @@ package com.android.example.educationsupport.ui.base
 import android.widget.RadioButton
 import androidx.lifecycle.ViewModel
 import com.android.example.educationsupport.databinding.ActivitySignUpBinding
-import com.android.example.educationsupport.data.repository.FirebaseRepository
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class SignUpViewModel : ViewModel() {
-    private val firebaseRepository = FirebaseRepository()
+    private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val firestore = Firebase.firestore
+    private val uemail = firebaseAuth?.currentUser?.email.toString()
     private var Info: String = ""
 
     fun UserSignUp(binding: ActivitySignUpBinding): String {
@@ -22,12 +26,12 @@ class SignUpViewModel : ViewModel() {
         }
             if (email.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()) {
                 if (pass == confirmPass) {
-                    firebaseRepository.getFirebaseAuth().createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
+                    firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                         if (it.isSuccessful) {
                             val courseMap = hashMapOf(
                                 "role" to role
                             )
-                            firebaseRepository.getFireStore().collection("user").document(email).set(courseMap).addOnSuccessListener {
+                            firestore.collection("user").document(email).set(courseMap).addOnSuccessListener {
                                 Info = "Adding Successful"
                             }.addOnFailureListener{
                                 Info = "Adding Failure"

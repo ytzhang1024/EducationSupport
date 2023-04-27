@@ -1,27 +1,23 @@
 package com.android.example.educationsupport.ui.course
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.android.example.educationsupport.R
-import com.android.example.educationsupport.databinding.ActivityCourseBinding
+import com.android.example.educationsupport.databinding.ActivitySelectedCourseBinding
 import com.android.example.educationsupport.utils.UiState
 import com.android.example.educationsupport.utils.hide
 import com.android.example.educationsupport.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AllCoursesActivity : AppCompatActivity() {
+class SelectedCourseActivity : AppCompatActivity() {
 
-    val TAG: String = "AllCourseActivity"
-    private lateinit var binding: ActivityCourseBinding
-    private val allCourseViewModel: AllCourseViewModel by viewModels()
+    val TAG: String = "StudentCourseActivity"
+    private lateinit var binding: ActivitySelectedCourseBinding
+    private val SelectedCourseViewModel: SelectedCourseViewModel by viewModels()
     val adapter by lazy {
         CourseAdapter(
         )
@@ -31,7 +27,7 @@ class AllCoursesActivity : AppCompatActivity() {
         savedInstanceState: Bundle?
     ) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCourseBinding.inflate(layoutInflater)
+        binding = ActivitySelectedCourseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         observer()
@@ -39,7 +35,7 @@ class AllCoursesActivity : AppCompatActivity() {
         binding.recyclerCourse.layoutManager = staggeredGridLayoutManager
         binding.recyclerCourse.adapter = adapter
 
-        allCourseViewModel.getCourseList()
+        SelectedCourseViewModel.getStudentCourseList()
 
 
         //Go to course detail page
@@ -50,7 +46,7 @@ class AllCoursesActivity : AppCompatActivity() {
     }
 
     private fun observer(){
-        allCourseViewModel.allCourse.observe(this) { state ->
+        SelectedCourseViewModel.studentCourse.observe(this) { state ->
             when(state){
                 is UiState.Loading -> {
                     binding.progressBar.show()

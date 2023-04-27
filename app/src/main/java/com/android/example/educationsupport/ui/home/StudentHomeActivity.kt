@@ -1,9 +1,6 @@
-package com.android.example.educationsupport.ui.activities
+package com.android.example.educationsupport.ui.home
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.KeyEvent
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -11,9 +8,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.android.example.educationsupport.R
 import com.android.example.educationsupport.databinding.ActivityStudentHomeBinding
-import com.android.example.educationsupport.ui.course.AllCoursesActivity
-import com.android.example.educationsupport.ui.course.CourseResultActivity
-import com.android.example.educationsupport.ui.course.SelectedActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class StudentHomeActivity : AppCompatActivity() {

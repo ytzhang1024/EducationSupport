@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -11,6 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
+        <activity
+            android:name=".ui.course.TutorCourseActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.course.StudentMarkListActivity"
             android:exported="false" />
@@ -52,9 +56,6 @@
             android:name=".ui.dashboard.UserProfileActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.activities.TestDBActivity"
-            android:exported="true" />
-        <activity
             android:name=".ui.base.SignInActivity"
             android:exported="true">
             <intent-filter>
@@ -67,10 +68,10 @@
             android:name=".ui.base.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.StudentHomeActivity"
+            android:name=".ui.home.StudentHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.EducatorHomeActivity"
+            android:name=".ui.home.EducatorHomeActivity"
             android:exported="false" />
         <activity
             android:name=".ui.course.AllCoursesActivity"
@@ -80,11 +81,11 @@
             android:exported="false"
             android:label="Open Data" />
         <activity
-            android:name=".ui.activities.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name" />
         <activity
-            android:name=".ui.course.SelectedActivity"
+            android:name=".ui.course.SelectedCourseActivity"
             android:label="Selected Course" />
         <activity
             android:name=".ui.student.AddStudentActivity"

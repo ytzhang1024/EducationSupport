@@ -24,10 +24,10 @@ class CreateModuleActivity : AppCompatActivity() {
             startActivity(intent)
         }
 //        Jump to create activity
-        val btnCreateAct = findViewById<Button>(R.id.btnCreateAct)
-        btnCreateAct.setOnClickListener {
-            val intent = Intent(this, CreateActActivity::class.java)
-            startActivity(intent)
-        }
+//        val btnCreateAct = findViewById<Button>(R.id.btnCreateAct)
+//        btnCreateAct.setOnClickListener {
+//            val intent = Intent(this, CreateActActivity::class.java)
+//            startActivity(intent)
+//        }
     }
 }

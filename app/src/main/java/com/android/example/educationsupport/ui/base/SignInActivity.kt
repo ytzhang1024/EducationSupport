@@ -6,15 +6,20 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.android.example.educationsupport.databinding.ActivitySignInBinding
-import com.android.example.educationsupport.data.repository.FirebaseRepository
-import com.android.example.educationsupport.ui.activities.EducatorHomeActivity
-import com.android.example.educationsupport.ui.activities.StudentHomeActivity
+import com.android.example.educationsupport.ui.home.EducatorHomeActivity
+import com.android.example.educationsupport.ui.home.StudentHomeActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class SignInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignInBinding
-    private val firebaseRepository = FirebaseRepository()
+    private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val firestore = Firebase.firestore
+    private val uemail = firebaseAuth?.currentUser?.email.toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +38,8 @@ class SignInActivity : AppCompatActivity() {
             val pass = binding.passET.text.toString()
 
             if (email.isNotEmpty() && pass.isNotEmpty()) {
-                val ref = firebaseRepository.getFireStore().collection("user").document(email)
-                firebaseRepository.getFirebaseAuth().signInWithEmailAndPassword(email, pass).addOnCompleteListener {
+                val ref = firestore.collection("user").document(email)
+                firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                     if (it.isSuccessful) {
                         // Get role data from the database
                         ref.get().addOnSuccessListener {
@@ -61,13 +66,13 @@ class SignInActivity : AppCompatActivity() {
 
 
 // 登录的缓存 login cache
-//    override fun onStart() {
-//        super.onStart()
-//        if(firebaseRepository.getFirebaseAuth().currentUser != null){
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//        }
-//    }
+    override fun onStart() {
+        super.onStart()
+        if(firebaseAuth.currentUser != null){
+            val intent = Intent(this, StudentHomeActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
     override fun onBackPressed() {
         super.onBackPressed()

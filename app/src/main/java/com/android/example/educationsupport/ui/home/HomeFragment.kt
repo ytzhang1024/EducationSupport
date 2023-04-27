@@ -8,14 +8,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.android.example.educationsupport.R
 import com.android.example.educationsupport.databinding.FragmentHomeBinding
 import com.android.example.educationsupport.ui.course.AllCoursesActivity
 import com.android.example.educationsupport.ui.course.CourseResultActivity
-import com.android.example.educationsupport.ui.course.SelectedActivity
+import com.android.example.educationsupport.ui.course.SelectedCourseActivity
 import com.android.example.educationsupport.ui.quiz.QuizActivity
-import com.android.example.educationsupport.ui.home.HomeViewModel
-
 
 class HomeFragment : Fragment(), View.OnClickListener {
 
@@ -45,7 +42,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         //Jump to selected courses page
         val btnSelected : Button = binding.selectedBtn2
         btnSelected.setOnClickListener {
-            val intent = Intent(activity, SelectedActivity::class.java)
+            val intent = Intent(activity, SelectedCourseActivity::class.java)
             startActivity(intent)
         }
 
@@ -63,17 +60,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
             startActivity(intent)
         }
 
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
-//        val btnCourse: Button = binding.btnCourse
-//        btnCourse.setOnClickListener() {
-////            btnCourse.text = "Hello"
-//            println("click")
-//            val intent = Intent(activity, Module::class.java)
-//            startActivity(intent)
-//        }
         return root
     }
 
@@ -83,12 +69,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-//        val btnCourse: Button = binding.btnCourse
-//        btnCourse.setOnClickListener() {
-//            btnCourse.text = "Hello"
-//            println("click")
-//            val intent = Intent(activity, Module::class.java)
-//            startActivity(intent)
-//        }
+
     }
 }

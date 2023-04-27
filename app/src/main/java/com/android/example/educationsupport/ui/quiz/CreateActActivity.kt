@@ -50,9 +50,9 @@ class CreateActActivity : AppCompatActivity(), CourseAdapter.OnItemClickListener
     }
 
     override fun onItemClick(position: Int) {
-        Toast.makeText(this, "Item $position clicked", Toast.LENGTH_SHORT).show()
-        val clickedItem = courseList[position]
-        clickedItem.name = "clicked"
-        recyclerView.adapter?.notifyItemChanged(position)
+//        Toast.makeText(this, "Item $position clicked", Toast.LENGTH_SHORT).show()
+//        val clickedItem = courseList[position]
+//        clickedItem.name = "clicked"
+//        recyclerView.adapter?.notifyItemChanged(position)
     }
 }

@@ -22,13 +22,11 @@
 //
 //    }
 //}
-package com.android.example.educationsupport.ui.activities
+package com.android.example.educationsupport.ui.home
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import com.android.example.educationsupport.R
 import com.android.example.educationsupport.databinding.ActivityEducatorHomeBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -36,11 +34,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.android.example.educationsupport.ui.course.AllCoursesActivity
-import com.android.example.educationsupport.ui.course.CourseResultActivity
-import com.android.example.educationsupport.ui.course.SelectedActivity
-import com.android.example.educationsupport.ui.course.StudentMarkListActivity
-import com.android.example.educationsupport.ui.quiz.CreateModuleActivity
 
 class EducatorHomeActivity : AppCompatActivity(), View.OnClickListener {
 
