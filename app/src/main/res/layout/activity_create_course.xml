@@ -51,13 +51,14 @@
 
     <Button
         android:id="@+id/btnSubmitCourse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="267dp"
+        android:layout_height="49dp"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.819"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.822" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

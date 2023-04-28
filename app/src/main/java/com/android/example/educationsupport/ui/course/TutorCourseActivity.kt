@@ -1,9 +1,12 @@
 package com.android.example.educationsupport.ui.course
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.NonNull
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.android.example.educationsupport.databinding.ActivityCourseBinding
@@ -11,6 +14,7 @@ import com.android.example.educationsupport.utils.UiState
 import com.android.example.educationsupport.utils.hide
 import com.android.example.educationsupport.utils.show
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class TutorCourseActivity : AppCompatActivity() {
@@ -21,6 +25,17 @@ class TutorCourseActivity : AppCompatActivity() {
     private val tutorCourseViewModel: TutorCourseViewModel by viewModels()
     val adapter by lazy {
         CourseAdapter(
+            onItemClick = { _, Course ->
+                val intent = Intent(this, CourseDetailActivity::class.java)
+                val courseName = Course.name
+                val courseDesc = Course.description
+
+                //Get the clicked course and pass the parameters to the next activity
+                intent.putExtra("courseName", courseName)
+                intent.putExtra("courseDesc", courseDesc)
+                intent.putExtra("role", "Tutor")
+                startActivity(intent)
+            }
         )
     }
 
@@ -37,12 +52,6 @@ class TutorCourseActivity : AppCompatActivity() {
         binding.recyclerCourse.adapter = adapter
 
         tutorCourseViewModel.getTutorCourseList()
-
-
-        //Go to course detail page
-        binding.recyclerCourse.setOnClickListener {
-
-        }
 
     }
 

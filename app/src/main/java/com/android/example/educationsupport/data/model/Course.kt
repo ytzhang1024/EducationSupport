@@ -1,8 +1,8 @@
 package com.android.example.educationsupport.data.model
 
-class Course (
-    val name: String ?= "",
-    var tutorEmail: String ?= "",
-    val description: String ?= "",
-    var tutorName: String ?= ""
+data class Course(
+    var description: String? = null,
+    var name: String ?= null,
+    var tutorEmail: String ?= null,
+    var tutorName: String ?= null
 )

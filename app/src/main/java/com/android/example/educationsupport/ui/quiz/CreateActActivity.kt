@@ -5,54 +5,42 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.example.educationsupport.R
+import com.android.example.educationsupport.data.model.Activity
 import com.android.example.educationsupport.data.model.Course
 import com.android.example.educationsupport.databinding.ActivityCreateActBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 
-class CreateActActivity : AppCompatActivity(), CourseAdapter.OnItemClickListener {
+@AndroidEntryPoint
+class CreateActActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreateActBinding
-    private lateinit var firebaseAuth: FirebaseAuth
-    private var firestore = Firebase.firestore
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var courseList: ArrayList<Course>
+    private val createActivityViewModel: CreateActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_act)
         binding = ActivityCreateActBinding.inflate(layoutInflater)
+        val courseName = intent.getStringExtra("courseName")
         setContentView(binding.root)
 
-        recyclerView = findViewById(R.id.recyclercourse)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.btnSubmitActivity.setOnClickListener {
+            var activity = Activity(
+                title = binding.activityTitleET.text.toString(),
+                course = courseName
+            )
+            createActivityViewModel.addActivity(activity)
 
-        courseList = arrayListOf()
-        firestore = FirebaseFirestore.getInstance()
-        firestore.collection("course").get().addOnSuccessListener {
-            if (!it.isEmpty) {
-                for (data in it.documents) {
-                    val course: Course? = data.toObject(Course::class.java)
-                    if (course != null) {
-                        courseList.add(course)
-                    }
-                }
-                recyclerView.adapter = CourseAdapter(courseList, this)
-            }
-        }.addOnFailureListener {
-            Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Create Successful", Toast.LENGTH_SHORT).show()
+            finish()
         }
     }
 
-    override fun onItemClick(position: Int) {
-//        Toast.makeText(this, "Item $position clicked", Toast.LENGTH_SHORT).show()
-//        val clickedItem = courseList[position]
-//        clickedItem.name = "clicked"
-//        recyclerView.adapter?.notifyItemChanged(position)
-    }
 }

@@ -1,13 +1,15 @@
 package com.android.example.educationsupport.ui.course
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.android.example.educationsupport.data.model.Course
 import com.android.example.educationsupport.databinding.CourseItemBinding
 
 class CourseAdapter(
-
+    val onItemClick: (Int, Course) -> Unit
 ) : RecyclerView.Adapter<CourseAdapter.MyViewHolder>() {
 
     private var list: MutableList<Course> = arrayListOf()
@@ -17,7 +19,9 @@ class CourseAdapter(
             binding.courseName.setText(item.name)
             binding.courseDescription.setText(item.description)
             binding.courseTutor.setText(item.tutorName)
+            binding.itemLayout.setOnClickListener { onItemClick.invoke(adapterPosition,item) }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -38,4 +42,6 @@ class CourseAdapter(
         this.list = list
         notifyDataSetChanged()
     }
+
+
 }

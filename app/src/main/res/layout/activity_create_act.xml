@@ -8,16 +8,36 @@
     android:layout_weight="1"
     app:layoutManager="LinearLayoutManager">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclercourse"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/createCourseLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSubmitActivity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activityTitleET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type activity title"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/btnSubmitActivity"
+        android:layout_width="267dp"
+        android:layout_height="49dp"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        tools:listitem="@layout/courselist_item" />
+        app:layout_constraintVertical_bias="0.365" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

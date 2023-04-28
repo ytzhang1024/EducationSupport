@@ -37,9 +37,4 @@ class CreateCourseActivity : AppCompatActivity() {
 
     }
 
-    //Set courseMap as a global variable
-    companion object {
-        val courseMap = HashMap<String,String>()
-    }
-
 }

@@ -1,5 +1,6 @@
 package com.android.example.educationsupport.ui.course
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -20,6 +21,16 @@ class SelectedCourseActivity : AppCompatActivity() {
     private val SelectedCourseViewModel: SelectedCourseViewModel by viewModels()
     val adapter by lazy {
         CourseAdapter(
+            onItemClick = { _, Course ->
+                val intent = Intent(this, CourseDetailActivity::class.java)
+                val courseName = Course.name
+                val courseDesc = Course.description
+
+                //Get the clicked course and pass the parameters to the next activity
+                intent.putExtra("courseName", courseName)
+                intent.putExtra("courseDesc", courseDesc)
+                startActivity(intent)
+            }
         )
     }
 
@@ -36,7 +47,6 @@ class SelectedCourseActivity : AppCompatActivity() {
         binding.recyclerCourse.adapter = adapter
 
         SelectedCourseViewModel.getStudentCourseList()
-
 
         //Go to course detail page
         binding.recyclerCourse.setOnClickListener {

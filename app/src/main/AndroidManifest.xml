@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
         <activity
+            android:name=".ui.course.CourseDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.course.TutorCourseActivity"
             android:exported="false" />
         <activity
@@ -77,19 +80,13 @@
             android:name=".ui.course.AllCoursesActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.quiz.UnitActivity"
-            android:exported="false"
-            android:label="Open Data" />
-        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name" />
         <activity
             android:name=".ui.course.SelectedCourseActivity"
             android:label="Selected Course" />
-        <activity
-            android:name=".ui.student.AddStudentActivity"
-            android:label="Selected Course" />
+
     </application>
 
 </manifest>

@@ -5,56 +5,59 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.android.example.educationsupport.R
 import com.android.example.educationsupport.databinding.ActivityCourseBinding
+import com.android.example.educationsupport.databinding.ActivityCourseDetailBinding
+import com.android.example.educationsupport.ui.Activity.ActivityAdapter
+import com.android.example.educationsupport.ui.quiz.CreateActActivity
 import com.android.example.educationsupport.utils.UiState
 import com.android.example.educationsupport.utils.hide
 import com.android.example.educationsupport.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
-class AllCoursesActivity : AppCompatActivity() {
+class CourseDetailActivity : AppCompatActivity() {
 
-    val TAG: String = "AllCourseActivity"
-    private lateinit var binding: ActivityCourseBinding
-    private val allCourseViewModel: AllCourseViewModel by viewModels()
+    private lateinit var binding: ActivityCourseDetailBinding
+    private val courseDetailViewModel: CourseDetailViewModel by viewModels()
     val adapter by lazy {
-        CourseAdapter(
-            onItemClick = { _, Course ->
-                val intent = Intent(this, CourseDetailActivity::class.java)
-                val courseName = Course.name
-                val courseDesc = Course.description
-
-                //Get the clicked course and pass the parameters to the next activity
-                intent.putExtra("courseName", courseName)
-                intent.putExtra("courseDesc", courseDesc)
-//                startActivity(intent)
-            }
+        ActivityAdapter(
         )
     }
 
-    override fun onCreate(
-        savedInstanceState: Bundle?
-    ) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCourseBinding.inflate(layoutInflater)
+        binding = ActivityCourseDetailBinding.inflate(layoutInflater)
+        val courseName = intent.getStringExtra("courseName")
+        val courseDesc = intent.getStringExtra("courseDesc")
+        val role = intent.getStringExtra("role")
+        binding.courseName.setText(courseName)
+        binding.courseDescription.setText(courseDesc)
+        if (!role.equals("Student")) {
+            binding.btnCreateActivity.show()
+            binding.btnCreateActivity.setOnClickListener{
+                val intent = Intent(this, CreateActActivity::class.java)
+                intent.putExtra("courseName", courseName)
+                startActivity(intent)
+            }
+        }
         setContentView(binding.root)
 
         observer()
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-        binding.recyclerCourse.layoutManager = staggeredGridLayoutManager
-        binding.recyclerCourse.adapter = adapter
+        binding.recyclerActivity.layoutManager = staggeredGridLayoutManager
+        binding.recyclerActivity.adapter = adapter
 
-        allCourseViewModel.getCourseList()
-
+        if (courseName != null) {
+            courseDetailViewModel.getCourseActivityList(courseName)
+        }
     }
 
+
     private fun observer(){
-        allCourseViewModel.allCourse.observe(this) { state ->
+        courseDetailViewModel.courseActivity.observe(this) { state ->
             when(state){
                 is UiState.Loading -> {
                     binding.progressBar.show()
