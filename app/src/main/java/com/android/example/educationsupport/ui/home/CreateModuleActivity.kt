@@ -1,4 +1,4 @@
-package com.android.example.educationsupport.ui.quiz
+package com.android.example.educationsupport.ui.home
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import com.android.example.educationsupport.R
 import com.android.example.educationsupport.databinding.ActivityCreateModuleBinding
+import com.android.example.educationsupport.ui.quiz.CreateCourseActivity
 
 class CreateModuleActivity : AppCompatActivity() {
 

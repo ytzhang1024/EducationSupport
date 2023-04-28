@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.example.educationsupport.data.model.Activity
+import com.android.example.educationsupport.data.model.Course
 import com.android.example.educationsupport.databinding.ActivityItemBinding
 
 
 class ActivityAdapter(
-
+    val onItemClick: (Int, Activity) -> Unit
 ) : RecyclerView.Adapter<ActivityAdapter.MyViewHolder>() {
 
     private var list: MutableList<Activity> = arrayListOf()
@@ -16,6 +17,7 @@ class ActivityAdapter(
     inner class MyViewHolder(val binding: ActivityItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Activity){
             binding.activityName.setText(item.title)
+            binding.itemLayout.setOnClickListener { onItemClick.invoke(adapterPosition,item) }
         }
 
     }

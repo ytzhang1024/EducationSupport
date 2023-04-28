@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
         <activity
+            android:name=".ui.quiz.QuizActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.quiz.CreateQuestionActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.course.CourseDetailActivity"
             android:exported="false" />
         <activity
@@ -33,17 +39,9 @@
             android:exported="false"
             android:label="Create Course" />
         <activity
-            android:name=".ui.quiz.CreateModuleActivity"
+            android:name=".ui.home.CreateModuleActivity"
             android:exported="false"
             android:label="Create Module" />
-        <activity
-            android:name=".ui.quiz.QuestionActivity"
-            android:exported="false"
-            android:label="Quiz 1" />
-        <activity
-            android:name=".ui.quiz.QuizActivity"
-            android:exported="false"
-            android:label="Activity 1" />
         <activity
             android:name=".ui.course.ResultActivity"
             android:exported="false" />
@@ -86,7 +84,6 @@
         <activity
             android:name=".ui.course.SelectedCourseActivity"
             android:label="Selected Course" />
-
     </application>
 
 </manifest>

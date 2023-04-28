@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
-    android:onClick="courseOnClick"
-    android:id="@+id/item_layout"
-    tools:context=".ui.quiz.QuizActivity">
+    android:id="@+id/item_layout">
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_course"

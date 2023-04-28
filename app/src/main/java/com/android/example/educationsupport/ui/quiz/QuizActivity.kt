@@ -3,22 +3,78 @@ package com.android.example.educationsupport.ui.quiz
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.android.example.educationsupport.R
-import com.android.example.educationsupport.databinding.ActivityCourseBinding
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.android.example.educationsupport.databinding.ActivityCourseDetailBinding
+import com.android.example.educationsupport.databinding.ActivityQuizBinding
+import com.android.example.educationsupport.ui.Activity.ActivityAdapter
+import com.android.example.educationsupport.ui.course.CourseDetailViewModel
+import com.android.example.educationsupport.utils.UiState
+import com.android.example.educationsupport.utils.hide
+import com.android.example.educationsupport.utils.show
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class QuizActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityCourseBinding
+    val TAG: String = "QuizActivity"
+    private lateinit var binding: ActivityQuizBinding
+    private val quizViewModel: QuizViewModel by viewModels()
+    val adapter by lazy {
+        QuizAdapter(
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_course)
-        binding = ActivityCourseBinding.inflate(layoutInflater)
+        binding = ActivityQuizBinding.inflate(layoutInflater)
+        val activityName = intent.getStringExtra("activityName")
+        val role = intent.getStringExtra("role")
+        binding.activityName.setText(activityName)
+        if (!role.equals("Student")) {
+            binding.btnCreateQuesion.show()
+            binding.btnCreateQuesion.setOnClickListener{
+                val intent = Intent(this, CreateQuestionActivity::class.java)
+                intent.putExtra("activityName", activityName)
+                startActivity(intent)
+            }
+        }
         setContentView(binding.root)
 
-//        binding.btnCourse.setOnClickListener {
-//            val intent = Intent(this, QuestionActivity::class.java)
-//            startActivity(intent)
-//        }
+        observer()
+        val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        binding.recyclerQuestion.layoutManager = staggeredGridLayoutManager
+        binding.recyclerQuestion.adapter = adapter
+
+        if (activityName != null) {
+            quizViewModel.getQuestionList(activityName)
+        }
     }
+
+
+    private fun observer(){
+        quizViewModel.allQuestion.observe(this) { state ->
+            when(state){
+                is UiState.Loading -> {
+                    binding.progressBar.show()
+                    println("loading")
+
+                }
+                is UiState.Failure -> {
+                    binding.progressBar.hide()
+                    Toast.makeText(this,state.error, Toast.LENGTH_LONG).show()
+                    println("Fail")
+
+                }
+                is UiState.Success -> {
+                    binding.progressBar.hide()
+                    adapter.updateList(state.data.toMutableList())
+                }
+            }
+        }
+    }
+
 }

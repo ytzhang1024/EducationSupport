@@ -12,7 +12,6 @@ import com.android.example.educationsupport.databinding.FragmentHomeBinding
 import com.android.example.educationsupport.ui.course.AllCoursesActivity
 import com.android.example.educationsupport.ui.course.CourseResultActivity
 import com.android.example.educationsupport.ui.course.SelectedCourseActivity
-import com.android.example.educationsupport.ui.quiz.QuizActivity
 
 class HomeFragment : Fragment(), View.OnClickListener {
 
@@ -53,12 +52,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
             startActivity(intent)
         }
 
-        //Jump to quiz page
-        val btnQuiz : Button = binding.quizBtn2
-        btnQuiz.setOnClickListener {
-            val intent = Intent(activity, QuizActivity::class.java)
-            startActivity(intent)
-        }
 
         return root
     }

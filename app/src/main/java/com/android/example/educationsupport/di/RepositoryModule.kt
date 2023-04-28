@@ -1,5 +1,8 @@
 package com.android.example.educationsupport.di
 
+import android.content.SharedPreferences
+import com.android.example.educationsupport.data.repository.AuthRepository
+import com.android.example.educationsupport.data.repository.AuthRepositoryImpl
 import com.android.example.educationsupport.data.repository.CourseRepository
 import com.android.example.educationsupport.data.repository.CourseRepositoryImpl
 import com.google.firebase.auth.FirebaseAuth
@@ -23,5 +26,12 @@ object RepositoryModule {
         return CourseRepositoryImpl(auth, database)
     }
 
-
+    @Provides
+    @Singleton
+    fun provideAuthRepository(
+        database: FirebaseFirestore,
+        auth: FirebaseAuth,
+    ): AuthRepository {
+        return AuthRepositoryImpl(auth,database)
+    }
 }

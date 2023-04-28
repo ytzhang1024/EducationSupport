@@ -25,7 +25,7 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="5sp"
-            android:text="Course Management"
+            android:text="Create Course"
             android:textSize="15sp" />
 
 <!--        <Button-->

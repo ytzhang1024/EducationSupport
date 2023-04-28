@@ -29,6 +29,7 @@ class SelectedCourseActivity : AppCompatActivity() {
                 //Get the clicked course and pass the parameters to the next activity
                 intent.putExtra("courseName", courseName)
                 intent.putExtra("courseDesc", courseDesc)
+                intent.putExtra("role", "Student")
                 startActivity(intent)
             }
         )

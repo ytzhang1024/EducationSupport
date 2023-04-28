@@ -28,11 +28,9 @@ class AllCoursesActivity : AppCompatActivity() {
                 val intent = Intent(this, CourseDetailActivity::class.java)
                 val courseName = Course.name
                 val courseDesc = Course.description
-
-                //Get the clicked course and pass the parameters to the next activity
                 intent.putExtra("courseName", courseName)
                 intent.putExtra("courseDesc", courseDesc)
-//                startActivity(intent)
+                startActivity(intent)
             }
         )
     }
@@ -59,7 +57,6 @@ class AllCoursesActivity : AppCompatActivity() {
                 is UiState.Loading -> {
                     binding.progressBar.show()
                     println("loading")
-
                 }
                 is UiState.Failure -> {
                     binding.progressBar.hide()
