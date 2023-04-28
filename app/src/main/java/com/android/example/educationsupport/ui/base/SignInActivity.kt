@@ -66,13 +66,13 @@ class SignInActivity : AppCompatActivity() {
 
 
 // 登录的缓存 login cache
-    override fun onStart() {
-        super.onStart()
-        if(firebaseAuth.currentUser != null){
-            val intent = Intent(this, EducatorHomeActivity::class.java)
-            startActivity(intent)
-        }
-    }
+//    override fun onStart() {
+//        super.onStart()
+//        if(firebaseAuth.currentUser != null){
+//            val intent = Intent(this, StudentHomeActivity::class.java)
+//            startActivity(intent)
+//        }
+//    }
 
     override fun onBackPressed() {
         super.onBackPressed()
