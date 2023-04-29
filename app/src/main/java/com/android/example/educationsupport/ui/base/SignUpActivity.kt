@@ -46,7 +46,6 @@ class SignUpActivity : AppCompatActivity() {
                 finish()
 //            }
         }
-
     }
 
 
@@ -80,7 +79,7 @@ class SignUpActivity : AppCompatActivity() {
         if (button_educator.isChecked) {
             role = "Student"
         } else {
-            role = "Educator"
+            role = "Tutor"
         }
         return User(
             id = "",

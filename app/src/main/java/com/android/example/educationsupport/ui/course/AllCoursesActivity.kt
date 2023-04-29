@@ -5,11 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.android.example.educationsupport.R
 import com.android.example.educationsupport.databinding.ActivityCourseBinding
 import com.android.example.educationsupport.utils.UiState
 import com.android.example.educationsupport.utils.hide
@@ -25,7 +22,7 @@ class AllCoursesActivity : AppCompatActivity() {
     val adapter by lazy {
         CourseAdapter(
             onItemClick = { _, Course ->
-                val intent = Intent(this, CourseDetailActivity::class.java)
+                val intent = Intent(this, EnrollCourseActivity::class.java)
                 val courseName = Course.name
                 val courseDesc = Course.description
                 intent.putExtra("courseName", courseName)

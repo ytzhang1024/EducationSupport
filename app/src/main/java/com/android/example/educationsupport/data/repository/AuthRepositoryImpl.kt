@@ -1,9 +1,7 @@
 package com.android.example.educationsupport.data.repository
 
-import android.content.SharedPreferences
 import com.android.example.educationsupport.data.model.User
 import com.android.example.educationsupport.utils.UiState
-import com.android.example.educationsupport.utils.show
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
@@ -25,20 +23,31 @@ class AuthRepositoryImpl(
         auth.createUserWithEmailAndPassword(email,password)
             .addOnCompleteListener {
                 if (it.isSuccessful){
+                    val Enable = mapOf(
+                        "enable" to true
+                    )
                     user.id = it.result.user?.uid ?: ""
                     database.collection("user").document(email).set(user).addOnSuccessListener {
                         result.invoke(UiState.Success("User register successfully!"))
                     }
-                    if (user.role == "Educator") {
-                        val tutorHasCourse = mapOf(
-                            "enable" to true
-                        )
+                    if (user.role == "Tutor") {
                         val docRef = database.collection("tutorCourseMapping").document(email)
                         docRef.get().addOnSuccessListener { documentSnapshot ->
                             if (documentSnapshot.exists()) {
                                 // Document exists
                             } else {
-                                database.collection("tutorCourseMapping").document(email).set(tutorHasCourse)
+                                database.collection("tutorCourseMapping").document(email).set(Enable)
+                            }
+                        }.addOnFailureListener { exception ->
+                            // Error handling
+                        }
+                    } else if (user.role == "Student") {
+                        val docRef = database.collection("studentCourseMapping").document(email)
+                        docRef.get().addOnSuccessListener { documentSnapshot ->
+                            if (documentSnapshot.exists()) {
+                                // Document exists
+                            } else {
+                                database.collection("studentCourseMapping").document(email).set(Enable)
                             }
                         }.addOnFailureListener { exception ->
                             // Error handling
@@ -78,7 +87,7 @@ class AuthRepositoryImpl(
         auth.signInWithEmailAndPassword(email,password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    result.invoke(UiState.Success("Login successfully!"))
+                    result.invoke(UiState.Success("Login Successful"))
                 }
             }.addOnFailureListener {
                 result.invoke(UiState.Failure("Authentication failed, Check email and password"))

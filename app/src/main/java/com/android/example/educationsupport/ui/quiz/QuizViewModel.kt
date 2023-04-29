@@ -25,4 +25,13 @@ class QuizViewModel @Inject constructor(
         _allQuestion.value = UiState.Loading
         repository.getQuestionList(activityName) { _allQuestion.value = it }
     }
+
+    private val _questionDetail = MutableLiveData<UiState<Question>>()
+    val questionDetail: LiveData<UiState<Question>>
+        get() = _questionDetail
+
+    fun getQuestionDetail(activityName: String) {
+        _questionDetail.value = UiState.Loading
+        repository.getQuestionDetail(activityName) { _questionDetail.value = it }
+    }
 }

@@ -3,11 +3,12 @@ package com.android.example.educationsupport.ui.base
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.android.example.educationsupport.databinding.ActivitySignInBinding
 import com.android.example.educationsupport.ui.home.EducatorHomeActivity
 import com.android.example.educationsupport.ui.home.StudentHomeActivity
+import com.android.example.educationsupport.utils.isValidEmail
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -15,11 +16,12 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SignInActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivitySignInBinding
+    val TAG: String = "SignInActivity"
+    lateinit var binding: ActivitySignInBinding
     private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val firestore = Firebase.firestore
-    private val uemail = firebaseAuth?.currentUser?.email.toString()
+    val viewModel: AuthViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +33,15 @@ class SignInActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val viewModel = ViewModelProvider(this)[SignInViewModel::class.java]
+//        binding.button.setOnClickListener {
+//            if (validation()) {
+//                viewModel.login(
+//                    email = binding.emailEt.text.toString(),
+//                    password = binding.passET.text.toString()
+//                )
+//                checkRole()
+//            }
+//        }
 
         binding.button.setOnClickListener {
             val email = binding.emailEt.text.toString()
@@ -44,11 +54,10 @@ class SignInActivity : AppCompatActivity() {
                         // Get role data from the database
                         ref.get().addOnSuccessListener {
                             val role = it.data?.get("role").toString()
-                            if(role == "Student"){
+                            if (role == "Student") {
                                 val intent = Intent(this, StudentHomeActivity::class.java)
                                 startActivity(intent)
-                            }
-                            else{
+                            } else {
                                 val intent = Intent(this, EducatorHomeActivity::class.java)
                                 startActivity(intent)
                             }
@@ -65,11 +74,11 @@ class SignInActivity : AppCompatActivity() {
     }
 
 
-// 登录的缓存 login cache
+    // 登录的缓存 login cache
 //    override fun onStart() {
 //        super.onStart()
 //        if(firebaseAuth.currentUser != null){
-//            val intent = Intent(this, EducatorHomeActivity::class.java)
+//            val intent = Intent(this, StudentHomeActivity::class.java)
 //            startActivity(intent)
 //        }
 //    }
@@ -77,6 +86,26 @@ class SignInActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         finishAffinity()
+    }
+
+    fun validation(): Boolean {
+        var isValid = true
+
+        if (binding.emailEt.text.isNullOrEmpty()){
+            isValid = false
+        }else{
+            if (!binding.emailEt.text.toString().isValidEmail()){
+                isValid = false
+            }
+        }
+        if (binding.passET.text.isNullOrEmpty()){
+            isValid = false
+        }else{
+            if (binding.passET.text.toString().length < 8){
+                isValid = false
+            }
+        }
+        return isValid
     }
 
 }

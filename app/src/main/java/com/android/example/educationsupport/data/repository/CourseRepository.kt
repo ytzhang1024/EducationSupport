@@ -14,5 +14,7 @@ interface CourseRepository {
     fun addActivity(activity: Activity, result: (UiState<Pair<Activity, String>>) -> Unit)
     fun addQuestion(activityName: String, question: Question, result: (UiState<Pair<Question, String>>) -> Unit)
     fun getQuestionList(activityName: String, result: (UiState<List<Question>>) -> Unit)
-
+    fun getQuestionDetail(activityName: String, result: (UiState<Question>) -> Unit)
+    fun enrollCourse(courseName: String, student_email: String)
+    fun studentEnrollCourse(courseName: String?)
 }

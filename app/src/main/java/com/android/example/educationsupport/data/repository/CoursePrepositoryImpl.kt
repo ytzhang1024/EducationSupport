@@ -116,38 +116,35 @@ class CourseRepositoryImpl(
     }
 
     override fun getStudentCourseList(result: (UiState<List<Course>>) -> Unit) {
-        // First query to retrieve data from a collection
-        database.collection("studentCourseMapping").get()
-            .addOnSuccessListener { querySnapshot1 ->
-                val data = mutableListOf<String>()
-                for (doc in querySnapshot1) {
-                    val array = doc.get("course") as ArrayList<String>
-                    data.addAll(array)
-                }
-
-                // Use the retrieved data to perform another query
-                database.collection("course").get()
-                    .addOnSuccessListener { querySnapshot2 ->
-                        val courses = arrayListOf<Course>()
-                        // Process the results of the second query
-                        for (doc in querySnapshot2) {
-                            val courseTmp = doc.toObject(Course::class.java)
-                            if (data.contains(courseTmp.name)) {
-                                courses.add(courseTmp)
+        auth.currentUser?.email?.let {
+            database.collection("studentCourseMapping").document(it).get()
+                .addOnSuccessListener { querySnapshot1 ->
+                    val data = mutableListOf<String>()
+                    val courses = querySnapshot1.get("course") as ArrayList<String>
+                    data.addAll(courses)
+                    // Use the retrieved data to perform another query
+                    database.collection("course").get()
+                        .addOnSuccessListener { querySnapshot2 ->
+                            val courses = arrayListOf<Course>()
+                            // Process the results of the second query
+                            for (doc in querySnapshot2) {
+                                val courseTmp = doc.toObject(Course::class.java)
+                                if (data.contains(courseTmp.name)) {
+                                    courses.add(courseTmp)
+                                }
                             }
-                            Log.d("Firestore", doc.data.toString())
+                            result.invoke(
+                                UiState.Success(courses)
+                            )
                         }
-                        result.invoke(
-                            UiState.Success(courses)
-                        )
-                    }
-                    .addOnFailureListener { e ->
-                        Log.e("Firestore", "Error retrieving documents: $e")
-                    }
-            }
-            .addOnFailureListener { e ->
-                Log.e("Firestore", "Error retrieving documents: $e")
-            }
+                        .addOnFailureListener { e ->
+                            Log.e("Firestore", "Error retrieving documents: $e")
+                        }
+                }
+                .addOnFailureListener { e ->
+                    Log.e("Firestore", "Error retrieving documents: $e")
+                }
+        }
     }
 
     override fun addActivity(activity: Activity, result: (UiState<Pair<Activity, String>>) -> Unit) {
@@ -216,7 +213,7 @@ class CourseRepositoryImpl(
                     .addOnFailureListener { e ->
                         Log.e("Firestore", "Error retrieving documents: $e")
                     }
-            }
+                }
 
             }
             .addOnFailureListener { exception ->
@@ -269,6 +266,26 @@ class CourseRepositoryImpl(
             .addOnFailureListener { exception ->
                 Log.e(TAG, "Error getting document", exception)
             }
+    }
+
+    override fun getQuestionDetail(activityName: String, result: (UiState<Question>) -> Unit) {
+
+    }
+
+    override fun enrollCourse(courseName: String, student_email: String) {
+        val docRef = database.collection("studentCourseMapping").document(student_email)
+        docRef.get().addOnSuccessListener {
+            
+        }.addOnFailureListener {
+            Log.e(TAG, "Fail to enroll")
+        }
+    }
+
+    override fun studentEnrollCourse(courseName: String?) {
+        val email = auth.currentUser?.email
+        if (email != null) {
+            database.collection("studentCourseMapping").document(email).update("course", FieldValue.arrayUnion(courseName))
+        }
     }
 
 

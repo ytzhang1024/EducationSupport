@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.example.educationsupport.data.model.Question
 import com.android.example.educationsupport.databinding.QuestionItemBinding
+import dagger.hilt.android.lifecycle.HiltViewModel
+
 
 class QuizAdapter(
 
