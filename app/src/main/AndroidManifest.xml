@@ -13,10 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
         <activity
-            android:name=".ui.course.EnrollCourseActivity"
+            android:name=".QuizStartingActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.quiz.QuestionDetailActivity"
+            android:name=".ui.start.activity.QuizDescActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.start.Fragment.QuizDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.course.EnrollCourseActivity"
             android:exported="false" />
         <activity
             android:name=".ui.quiz.QuizActivity"

@@ -7,10 +7,9 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.android.example.educationsupport.databinding.ActivityCourseDetailBinding
 import com.android.example.educationsupport.databinding.ActivityQuizBinding
-import com.android.example.educationsupport.ui.Activity.ActivityAdapter
-import com.android.example.educationsupport.ui.course.CourseDetailViewModel
+import com.android.example.educationsupport.ui.start.Fragment.QuizDetailActivity
+import com.android.example.educationsupport.ui.start.activity.QuizDescActivity
 import com.android.example.educationsupport.utils.UiState
 import com.android.example.educationsupport.utils.hide
 import com.android.example.educationsupport.utils.show
@@ -38,6 +37,14 @@ class QuizActivity : AppCompatActivity() {
             binding.btnCreateQuesion.show()
             binding.btnCreateQuesion.setOnClickListener{
                 val intent = Intent(this, CreateQuestionActivity::class.java)
+                intent.putExtra("activityName", activityName)
+                startActivity(intent)
+            }
+        } else {
+            binding.btnStartQuiz.show()
+            println(activityName)
+            binding.btnStartQuiz.setOnClickListener{
+                val intent = Intent(this, QuizDescActivity::class.java)
                 intent.putExtra("activityName", activityName)
                 startActivity(intent)
             }

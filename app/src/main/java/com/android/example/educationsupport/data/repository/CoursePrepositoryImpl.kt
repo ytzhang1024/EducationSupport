@@ -288,5 +288,36 @@ class CourseRepositoryImpl(
         }
     }
 
+    //这段代码写得很不优雅，我吐了
+    override fun checkStudentIfFinishTask(activityName: String, result: (Boolean) -> Unit) {
+        val email = auth.currentUser?.email
+        if (email != null) {
+            val ref = database.collection("quizResult").document(email)
+            ref.get().addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    val data = documentSnapshot.data
+                    println(data)
+                    if (data != null) {
+                        if (data.get(activityName) != null) {
+                            val tmp = data.get(activityName) as List<String>?
+                            println(tmp)
+                            if (tmp != null) {
+                                if (tmp.size == 1) {
+                                    result(false)
+                                    return@addOnSuccessListener
+                                }
+                            }
+                        }
+                    }
+                }
+                result(true)
+            }.addOnFailureListener {
+                result(false)
+            }
+        } else {
+            result(false)
+        }
+    }
+
 
 }

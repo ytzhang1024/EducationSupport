@@ -17,4 +17,5 @@ interface CourseRepository {
     fun getQuestionDetail(activityName: String, result: (UiState<Question>) -> Unit)
     fun enrollCourse(courseName: String, student_email: String)
     fun studentEnrollCourse(courseName: String?)
+    fun checkStudentIfFinishTask(activityName: String, result: (Boolean) -> Unit)
 }
