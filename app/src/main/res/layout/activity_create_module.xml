@@ -27,6 +27,8 @@
             android:layout_gravity="fill"
             android:layout_margin="5sp"
             android:text="Create Course"
+            android:textColor="@color/white"
+            android:background="@color/pink"
             android:textSize="15sp" />
 
         <Button
@@ -36,6 +38,8 @@
             android:layout_gravity="fill"
             android:layout_margin="5sp"
             android:text="Create Activity"
+            android:textColor="@color/white"
+            android:background="@color/pink"
             android:textSize="15sp" />
 
         <Button
@@ -45,6 +49,8 @@
             android:layout_gravity="fill"
             android:layout_margin="5sp"
             android:text="Create Quiz"
+            android:textColor="@color/white"
+            android:background="@color/pink"
             android:textSize="15sp" />
 
         <Button
@@ -54,6 +60,8 @@
             android:layout_gravity="fill"
             android:layout_margin="5sp"
             android:text="Create Question"
+            android:textColor="@color/white"
+            android:background="@color/pink"
             android:textSize="15sp" />
 
     </GridLayout>

@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/textcardColor">
 
-
     <TextView
         android:id="@+id/quiz_title"
         android:layout_width="0dp"
@@ -45,8 +44,6 @@
         app:layout_constraintEnd_toEndOf="@+id/question_tv"
         app:layout_constraintStart_toStartOf="@+id/question_tv"
         app:layout_constraintTop_toBottomOf="@+id/question_tv" />
-
-
 
     <TextView
         android:id="@+id/question_text"
@@ -109,7 +106,6 @@
         app:layout_constraintEnd_toEndOf="@+id/question_text"
         app:layout_constraintStart_toStartOf="@+id/question_text"
         app:layout_constraintTop_toBottomOf="@+id/quiz_option_two" />
-
 
     <TextView
         android:id="@+id/answer_feedback"
