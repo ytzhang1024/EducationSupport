@@ -26,4 +26,8 @@ class CourseDetailViewModel @Inject constructor(
         repository.getActivityCourseList(courseName) { _courseActivity.value = it }
     }
 
+    fun addStudent(studentEmail: String, courseName: String) {
+        repository.addStudent(studentEmail,courseName)
+    }
+
 }

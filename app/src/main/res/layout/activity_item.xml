@@ -16,13 +16,13 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-
         <TextView
             android:id="@+id/activity_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="93dp"
             android:text="activity name"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
+
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

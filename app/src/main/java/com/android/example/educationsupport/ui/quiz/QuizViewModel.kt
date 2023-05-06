@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.example.educationsupport.data.model.Course
 import com.android.example.educationsupport.data.model.Question
+import com.android.example.educationsupport.data.model.QuizRecord
 import com.android.example.educationsupport.data.repository.CourseRepository
 import com.android.example.educationsupport.utils.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,12 +27,40 @@ class QuizViewModel @Inject constructor(
         repository.getQuestionList(activityName) { _allQuestion.value = it }
     }
 
-    private val _questionDetail = MutableLiveData<UiState<Question>>()
-    val questionDetail: LiveData<UiState<Question>>
-        get() = _questionDetail
+    private val _studentQuestionDetail = MutableLiveData<UiState<List<Question>>>()
+    val studentQuestionDetail: LiveData<UiState<List<Question>>>
+        get() = _studentQuestionDetail
 
-    fun getQuestionDetail(activityName: String) {
-        _questionDetail.value = UiState.Loading
-        repository.getQuestionDetail(activityName) { _questionDetail.value = it }
+    fun studentGetQuestionDetail(activityName: String ) {
+
+        repository.studentGetQuestionDetail(activityName) { _studentQuestionDetail.value = it }
     }
+
+    private val _TutorQuestionDetail = MutableLiveData<UiState<List<Question>>>()
+    val tutorQuestionDetail: LiveData<UiState<List<Question>>>
+        get() = _TutorQuestionDetail
+
+    fun tutorGetQuestionDetail(questionName: String ) {
+
+        repository.tutorGetQuestionDetail(questionName) { _TutorQuestionDetail.value = it }
+    }
+
+    private val _deleteQuestion = MutableLiveData<UiState<Pair<Question, String>>>()
+    val DeleteQuestion: LiveData<UiState<Pair<Question, String>>>
+        get() =  _deleteQuestion
+    fun deleteQuestion(activityName:String,questionName: String){
+        repository.deleteQuestion(activityName,questionName) { _deleteQuestion.value = it }
+    }
+
+    private val _addQuizRecord = MutableLiveData<UiState<Pair<QuizRecord,String>>>()
+    val addQuizRecord : LiveData<UiState<Pair<QuizRecord,String>>>
+        get() = _addQuizRecord
+
+
+    fun addQuizRecord(quizRecord: QuizRecord){
+        _addQuizRecord.value = UiState.Loading
+        repository.addQuizRecord(quizRecord) { _addQuizRecord.value = it }
+    }
+
+
 }

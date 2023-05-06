@@ -12,8 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
+            <activity
+                android:name=".ui.quiz.StudentQuizDetailActivity"
+                android:exported="false" />
         <activity
-            android:name=".QuizStartingActivity"
+            android:name=".ui.quiz.QuizDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.start.activity.QuizDescActivity"

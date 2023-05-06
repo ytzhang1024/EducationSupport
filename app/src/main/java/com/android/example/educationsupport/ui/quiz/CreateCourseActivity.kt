@@ -14,7 +14,7 @@ class CreateCourseActivity : AppCompatActivity() {
 
     val TAG: String = "CreateCourseActivity"
     private lateinit var binding: ActivityCreateCourseBinding
-    private val createCourseViewModel: CreateCourseViewModel by viewModels()
+    private val createCourseViewModel: `CreateCourseViewModel` by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +34,6 @@ class CreateCourseActivity : AppCompatActivity() {
             Toast.makeText(this, "Create Successful", Toast.LENGTH_SHORT).show()
             finish()
         }
-
     }
 
 }

@@ -25,8 +25,10 @@ class AllCoursesActivity : AppCompatActivity() {
                 val intent = Intent(this, EnrollCourseActivity::class.java)
                 val courseName = Course.name
                 val courseDesc = Course.description
+                val couseEmail = Course.tutorEmail
                 intent.putExtra("courseName", courseName)
                 intent.putExtra("courseDesc", courseDesc)
+                intent.putExtra("couseEmail", couseEmail)
                 startActivity(intent)
             }
         )
@@ -39,12 +41,13 @@ class AllCoursesActivity : AppCompatActivity() {
         binding = ActivityCourseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        allCourseViewModel.getCourseList()
         observer()
-        val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        val staggeredGridLayoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         binding.recyclerCourse.layoutManager = staggeredGridLayoutManager
         binding.recyclerCourse.adapter = adapter
 
-        allCourseViewModel.getCourseList()
 
     }
 

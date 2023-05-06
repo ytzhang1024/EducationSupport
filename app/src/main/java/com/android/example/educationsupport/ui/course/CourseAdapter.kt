@@ -18,7 +18,7 @@ class CourseAdapter(
         fun bind(item: Course){
             binding.courseName.setText(item.name)
             binding.courseDescription.setText(item.description)
-            binding.courseTutor.setText(item.tutorName)
+            binding.courseTutor.setText(item.tutorEmail)
             binding.itemLayout.setOnClickListener { onItemClick.invoke(adapterPosition,item) }
         }
 

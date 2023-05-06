@@ -5,16 +5,19 @@ import android.util.Log
 import com.android.example.educationsupport.data.model.Activity
 import com.android.example.educationsupport.data.model.Course
 import com.android.example.educationsupport.data.model.Question
+import com.android.example.educationsupport.data.model.QuizRecord
+import com.android.example.educationsupport.databinding.ActivityQuizDetailBinding
 import com.android.example.educationsupport.utils.UiState
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import kotlin.math.log
 
 class CourseRepositoryImpl(
     val auth: FirebaseAuth,
-    val database: FirebaseFirestore
+    val database: FirebaseFirestore,
 ):CourseRepository {
 
     override fun addCourse(course: Course, result: (UiState<Pair<Course, String>>) -> Unit) {
@@ -66,8 +69,11 @@ class CourseRepositoryImpl(
                     courses.add(courseTmp)
                 }
                 result.invoke(
+
                     UiState.Success(courses)
                 )
+                println("===========================")
+                println("courses:"+courses)
             }
             .addOnFailureListener {
                 result.invoke(
@@ -194,14 +200,18 @@ class CourseRepositoryImpl(
         val docRef = database.collection("courseActivityMapping").document(courseName)
         docRef.get().addOnSuccessListener { documentSnapshot ->
             val data = documentSnapshot.get("activity")
+
             if (data != null){
                 data as List<String>
                 database.collection("activity").get()
                     .addOnSuccessListener { querySnapshot2 ->
                         val activities = arrayListOf<Activity>()
+
                         for (doc in querySnapshot2) {
                             val activityTmp = doc.toObject(Activity::class.java)
+
                             if (data.contains(activityTmp.title)) {
+
                                 activities.add(activityTmp)
                             }
                             Log.d("Firestore", doc.data.toString())
@@ -226,36 +236,76 @@ class CourseRepositoryImpl(
         question: Question,
         result: (UiState<Pair<Question, String>>) -> Unit
     ) {
-        println(activityName)
-        println(question)
-        val questionRef = database.collection("question").document()
-        val questionID = questionRef.id
-        println(questionID)
+        //改question id 为title
+        val questionRef = question.title?.let { database.collection("question").document(it) }
+            //val questionRef = database.collection("question").document()
+
+        //val questionID = questionRef.id
         val activityToQuestionRef = database.collection("activityQuestionMapping").document(activityName)
+        //val activityToQuestionRef = database.collection("activityQuestionMapping").document()
+
 
         database.runBatch { batch ->
-            questionRef.set(question)
-            activityToQuestionRef.update("question", FieldValue.arrayUnion(questionID))
+            if (questionRef != null) {
+                questionRef.set(question)
+            }
+            activityToQuestionRef.update("question", FieldValue.arrayUnion(question.title))
         }.addOnCompleteListener {
             // ...
         }
     }
 
+    override fun deleteQuestion(
+        activityName:String,
+        questionName: String,
+        result: (UiState<Pair<Question, String>>) -> Unit
+    ) {
+        val questionRef = database.collection("question").document(questionName)
+        questionRef.delete()
+            .addOnSuccessListener {
+
+                println("----------------- delete successfully")
+            }
+            .addOnFailureListener { e ->
+                Log.e("Firestore", "Error retrieving documents: $e")
+            }
+        val activityToQuestionRef = database.collection("activityQuestionMapping").document(activityName)
+        activityToQuestionRef.update("question", FieldValue.arrayRemove(questionName))
+            .addOnSuccessListener {
+                println("----------------- question removed from activityQuestionMapping")
+            }
+            .addOnFailureListener { e ->
+                Log.e("Firestore", "Error removing question from activityQuestionMapping: $e")
+            }
+    }
+
     override fun getQuestionList(activityName: String, result: (UiState<List<Question>>) -> Unit) {
         val docRef = database.collection("activityQuestionMapping").document(activityName)
+
         docRef.get().addOnSuccessListener { documentSnapshot ->
+            //get question id
             val data = documentSnapshot.get("question")
+            println("get question list:"+data)
                 if (data != null) {
                     data as List<String>
                     database.collection("question").get()
                         .addOnSuccessListener { querySnapshot2 ->
                             val questions = arrayListOf<Question>()
+
                             for (doc in querySnapshot2) {
                                 val questionTmp = doc.toObject(Question::class.java)
-                                questions.add(questionTmp)
+
+                                if (data.contains(questionTmp.title)) {
+                                   questions.add(questionTmp)
+                                }
+
+
+                                //questions.add(questionTmp)
                             }
                             result.invoke(
                                 UiState.Success(questions)
+
+
                             )
                         }
                         .addOnFailureListener { e ->
@@ -268,9 +318,171 @@ class CourseRepositoryImpl(
             }
     }
 
-    override fun getQuestionDetail(activityName: String, result: (UiState<Question>) -> Unit) {
+    override fun studentGetQuestionDetail(questionName: String, result: (UiState<List<Question>>) -> Unit) {
+        if (questionName != null) {
+//                data as List<String>
+            database.collection("question").get()
+                .addOnSuccessListener { querySnapshot2 ->
+                    val questions = arrayListOf<Question>()
+
+                    for (doc in querySnapshot2) {
+                        val questionTmp = doc.toObject(Question::class.java)
+
+                        if (questionName == questionTmp.title) {
+                            questions.add(questionTmp)
+                            println("????????????????????")
+                            println("tutorquestions:"+questions)
+                            println("tutorquestionTmp:"+questionTmp)
+
+                        }
+
+
+                        //questions.add(questionTmp)
+                    }
+
+                    result.invoke(
+                        UiState.Success(questions)
+                    )
+                }
+                .addOnFailureListener { e ->
+                    Log.e("Firestore", "Error retrieving documents: $e")
+                }
+        }
+
+        //val binding: ActivityQuizDetailBinding
+//        val docRef = database.collection("activityQuestionMapping").document(activityName)
+//        docRef.get().addOnSuccessListener { documentSnapshot ->
+//            //get question id
+//            val data = documentSnapshot.get("question")
+//            println(data)
+//            if (data != null) {
+//                data as List<String>
+//                database.collection("question").get()
+//                    .addOnSuccessListener { querySnapshot2 ->
+//                        val questions = arrayListOf<Question>()
+//
+//                        for (doc in querySnapshot2) {
+//                            val questionTmp = doc.toObject(Question::class.java)
+//
+//                            if (data.contains(questionTmp.title)) {
+//                                questions.add(questionTmp)
+//                                println("????????????????????")
+//                                println("questions:"+questions)
+//                                println("questionTmp:"+questionTmp)
+//
+//                            }
+//
+//
+//                            //questions.add(questionTmp)
+//                        }
+//
+//                        result.invoke(
+//                            UiState.Success(questions)
+//                        )
+//                    }
+//                    .addOnFailureListener { e ->
+//                        Log.e("Firestore", "Error retrieving documents: $e")
+//                    }
+//            }
+//        }
+//            .addOnFailureListener { exception ->
+//                Log.e(TAG, "Error getting document", exception)
+//            }
 
     }
+
+    override fun addQuizRecord(quizRecord: QuizRecord, result: (UiState<Pair<QuizRecord, String>>) -> Unit){
+        quizRecord.student_email = auth.currentUser?.email
+
+
+
+        val id = quizRecord.student_email + quizRecord.activity_name
+        val quizRef = id.let { database.collection("quizRecord").document(it) }
+        //val questionRef = database.collection("question").document()
+
+        //val questionID = questionRef.id
+//        val studentToQuizRef = quizRecord.student_email?.let {
+//                database.collection("studentActivityMapping").document(
+//                    it
+//                )
+//            }
+        val studentToQuizRef =
+            quizRecord.student_email?.let {
+                database.collection("studentActivityMapping").document(
+                    it
+                )
+            }
+        println("----------------------------test studentQuizMapping:"+studentToQuizRef)
+        //val activityToQuestionRef = database.collection("activityQuestionMapping").document()
+
+
+        database.runBatch { batch ->
+            if (quizRef != null) {
+                quizRef.set(quizRecord)
+            }
+            if (quizRef != null) {
+                quizRef.update("answer", FieldValue.arrayUnion(quizRecord.answer))
+            }
+            if (studentToQuizRef != null) {
+                studentToQuizRef.get().addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        studentToQuizRef.update("activity", FieldValue.arrayUnion(quizRecord.activity_name))
+                    } else {
+                        database.collection("studentActivityMapping").document(quizRecord.student_email!!)
+                            .set(mapOf("activity" to listOf(quizRecord.activity_name)))
+                    }
+                }.addOnFailureListener { exception ->
+                    // Error handling
+                }
+            }
+
+        }.addOnCompleteListener {
+            // ...
+        }
+    }
+
+    override fun tutorGetQuestionDetail(questionName: String, result: (UiState<List<Question>>) -> Unit) {
+        //val binding: ActivityQuizDetailBinding
+//        val docRef = database.collection("question").document(questionName)
+//        docRef.get().addOnSuccessListener { documentSnapshot ->
+//            //get question id
+//            val data = documentSnapshot.get("title")
+//            println("!!!!!!!!!!!!!in the tutorGetQuestionDetail"+docRef)
+            if (questionName != null) {
+//                data as List<String>
+                database.collection("question").get()
+                    .addOnSuccessListener { querySnapshot2 ->
+                        val questions = arrayListOf<Question>()
+
+                        for (doc in querySnapshot2) {
+                            val questionTmp = doc.toObject(Question::class.java)
+
+                            if (questionName == questionTmp.title) {
+                                questions.add(questionTmp)
+                                println("????????????????????")
+                                println("tutorquestions:"+questions)
+                                println("tutorquestionTmp:"+questionTmp)
+
+                            }
+
+
+                            //questions.add(questionTmp)
+                        }
+
+                        result.invoke(
+                            UiState.Success(questions)
+                        )
+                    }
+                    .addOnFailureListener { e ->
+                        Log.e("Firestore", "Error retrieving documents: $e")
+                    }
+            }
+
+
+
+    }
+
+
 
     override fun enrollCourse(courseName: String, student_email: String) {
         val docRef = database.collection("studentCourseMapping").document(student_email)
@@ -316,6 +528,18 @@ class CourseRepositoryImpl(
             }
         } else {
             result(false)
+        }
+    }
+
+    override fun addStudent(studentEmail: String,courseName: String){
+        println("111111111-1---------------------")
+        println(studentEmail)
+        println(courseName)
+        val Ref = database.collection("studentCourseMapping").document(studentEmail)
+        Ref.update("course", FieldValue.arrayUnion(courseName)).addOnSuccessListener {
+            println("Success")
+        }.addOnFailureListener {
+            println("Fail")
         }
     }
 

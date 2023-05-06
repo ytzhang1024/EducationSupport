@@ -4,25 +4,27 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.example.educationsupport.data.model.Question
-import com.android.example.educationsupport.databinding.QuestionItemBinding
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.android.example.educationsupport.databinding.ActivityItemBinding
 
 
 class QuizAdapter(
-
+    val onItemClick: (Int, Question) -> Unit
 ) : RecyclerView.Adapter<QuizAdapter.MyViewHolder>() {
 
     private var list: MutableList<Question> = arrayListOf()
 
-    inner class MyViewHolder(val binding: QuestionItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MyViewHolder(val binding: ActivityItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Question){
-            binding.questionName.setText(item.title)
+            binding.activityName.setText(item.title)
+
+
+            binding.itemLayout.setOnClickListener { onItemClick.invoke(adapterPosition,item) }
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = QuestionItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val itemView = ActivityItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return MyViewHolder(itemView)
     }
 

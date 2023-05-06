@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="course name"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/course_tutor"
@@ -37,5 +37,15 @@
             android:layout_height="wrap_content"
             android:text="description"
             android:textSize="15sp"/>
+
+
     </LinearLayout>
+
+
+
+
+
+
+
+
 </com.google.android.material.card.MaterialCardView>

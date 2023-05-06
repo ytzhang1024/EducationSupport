@@ -30,6 +30,8 @@ class CourseDetailActivity : AppCompatActivity() {
                 val intent = Intent(this, QuizActivity::class.java)
                 val activityName = Activity.title
                 intent.putExtra("activityName", activityName)
+                println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                println("CourseDeatil role:"+ role)
                 intent.putExtra("role", role)
                 startActivity(intent)
             }
@@ -44,13 +46,27 @@ class CourseDetailActivity : AppCompatActivity() {
         role = intent.getStringExtra("role")
         binding.courseName.setText(courseName)
         binding.courseDescription.setText(courseDesc)
+        //
         if (!role.equals("Student")) {
             binding.btnCreateActivity.show()
+            binding.studentEmailET.show()
             binding.btnCreateActivity.setOnClickListener{
                 val intent = Intent(this, CreateActActivity::class.java)
                 intent.putExtra("courseName", courseName)
                 startActivity(intent)
             }
+            binding.btnAddStudent.show()
+            binding.btnAddStudent.setOnClickListener{
+                val student_email = binding.studentEmailET.text.toString()
+                println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                println(student_email)
+                if (courseName != null) {
+                    courseDetailViewModel.addStudent(student_email,courseName)
+                }
+
+            }
+
+
         }
         setContentView(binding.root)
 
@@ -60,6 +76,7 @@ class CourseDetailActivity : AppCompatActivity() {
         binding.recyclerActivity.adapter = adapter
 
         if (courseName != null) {
+
             courseDetailViewModel.getCourseActivityList(courseName)
         }
     }

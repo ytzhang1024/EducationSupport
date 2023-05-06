@@ -22,7 +22,8 @@ class CreateQuestionActivity : AppCompatActivity() {
         binding = ActivityCreateQuestionBinding.inflate(layoutInflater)
         val activityName = intent.getStringExtra("activityName")
         setContentView(binding.root)
-
+        println("------------------------------------------------------")
+        println(activityName)
         binding.btnSubmitQuestion.setOnClickListener {
             var question = Question(
                 title = binding.questionTitle.text.toString(),
@@ -30,7 +31,7 @@ class CreateQuestionActivity : AppCompatActivity() {
                 option_B = binding.optionB.text.toString(),
                 option_C = binding.optionC.text.toString(),
                 option_D = binding.optionD.text.toString(),
-                correct_answer = checkWhichCheckIsTicked()
+                correct_answer = checkWhichCheckIsTicked().toString()
                 )
             if (activityName != null) {
                 createQuestionViewModel.addQuestion(activityName, question)
