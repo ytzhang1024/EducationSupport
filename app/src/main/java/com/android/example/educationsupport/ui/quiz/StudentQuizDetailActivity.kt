@@ -1,5 +1,6 @@
 package com.android.example.educationsupport.ui.quiz
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -14,41 +15,18 @@ import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
 import com.android.example.educationsupport.data.model.Question
 import com.android.example.educationsupport.data.model.QuizRecord
+import com.android.example.educationsupport.ui.course.ResultActivity
 
 
 @AndroidEntryPoint
 class StudentQuizDetailActivity : AppCompatActivity() {
 
-    private lateinit var database : FirebaseFirestore
-
-    val TAG: String = "QuizActivity"
-    private var role: String? = null
+    private lateinit var database: FirebaseFirestore
     private lateinit var binding: ActivityStudentQuizDetailBinding
     private val quizViewModel: QuizViewModel by viewModels()
-    //所有question都跳转到question detail，并传值
-    val adapter by lazy {
-        println("---------------------------sutdent adapter")
+    private val adapter by lazy {
         QuizDetailAdapter(
-
-            onItemClick = { _, Question ->
-//                binding.btnSubmitQuiz.setOnClickListener {
-//                    val selectedOptions = mutableListOf<String>()
-//                    for (i in 0 until adapter.itemCount) {
-//                        val viewHolder = binding.recyclerActivity.findViewHolderForAdapterPosition(i) as? QuizDetailAdapter.MyViewHolder
-//                        viewHolder?.let {
-//                            val options = it.getSelectedOptions()
-//                            options?.let { selectedOptions.addAll(it) }
-//                        }
-//                        println(i)
-//                    }
-//
-//
-//                    println("Selected Options: $selectedOptions")
-//                    // do something with selected options
-//                }
-//
-
-            }
+            onItemClick = { _, question -> }
         )
     }
 
@@ -56,20 +34,12 @@ class StudentQuizDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityStudentQuizDetailBinding.inflate(layoutInflater)
         database = FirebaseFirestore.getInstance()
-       // val questionName = intent.getStringExtra("questionName")
 
         val activityName = intent.getStringExtra("activityName")
         val questionArrayList = intent.getParcelableArrayListExtra<Question>("questionList")
-
-        // convert the ArrayList back to a List
         val questionList = questionArrayList?.toList()
 
-        //questionList.get(0): Question(title=Keytest, option_A=1, option_B=2, option_C=3, option_D=4, correct_answer=A,B)
-
-        role = intent.getStringExtra("role")
-
         setContentView(binding.root)
-
 
         observer()
 
@@ -77,84 +47,76 @@ class StudentQuizDetailActivity : AppCompatActivity() {
         binding.recyclerActivity.layoutManager = staggeredGridLayoutManager
         binding.recyclerActivity.adapter = adapter
 
-        val selectedOptions = mutableListOf<String>()
-
-
-        if (questionList != null) {
-                quizViewModel.studentGetQuestionDetail(questionList.get(0).title!!)
-
-        }
         var j = 1
-        var questionName: String? = null
+        var score = 0
         val answerMap = mutableMapOf<String, String>()
-        binding.btnSubmitQuiz.setOnClickListener {
+        if (questionList != null) {
+            quizViewModel.studentGetQuestionDetail(questionList[0].title!!)
+        }
 
+        binding.btnSubmitQuiz.setOnClickListener {
 
             val selectedOptions = mutableListOf<String>()
             for (i in 0 until adapter.itemCount) {
-                if (questionList != null) {
-                    quizViewModel.studentGetQuestionDetail(questionList.get(j).title!!)
-                    questionName = questionList.get(j-1).title!!
-
-                    j = j + 1
-                }
                 val viewHolder = binding.recyclerActivity.findViewHolderForAdapterPosition(i) as? QuizDetailAdapter.MyViewHolder
                 viewHolder?.let {
-                    val options = it.getSelectedOptions()
+                    val options = it.getSelectedOptions() //get selected answer
                     options?.let { selectedOptions.addAll(it) }
-                    it.setCheckBox()
-                }
-                if (questionList != null) {
-
+                    it.setCheckBox()// reset checkbox
+                    score = it.calculate(score, selectedOptions.toString())!! // calculate scores
                 }
             }
-            println("questionList.get(j).title!!:"+ questionName)
-            println("Selected Options: $selectedOptions")
 
-            questionName?.let {
-                answerMap[it] = selectedOptions.toString()
+            if (j < questionList!!.size) {
+                val question = questionList[j] //翻页，因为第一次按下按钮是跳到第二页，所以j = 1
+                val questionTitle = questionList[j-1]//获取题目名字，因为第一次按下按钮获取第一页（第一题），所以j = 0
+                answerMap[questionTitle.title!!] = selectedOptions.toString()
+                j++
+                quizViewModel.studentGetQuestionDetail(question.title!!)
+                val quizRecord = QuizRecord(
+                    activity_name = activityName,
+                    answer = answerMap,
+                    mark = score
+                )
+                quizViewModel.addQuizRecord(quizRecord)
+            } else {
+
+                val questionTitle = questionList[j-1]//获取题目名字，因为第一次按下按钮获取第一页（第一题），所以j = 0
+                answerMap[questionTitle.title!!] = selectedOptions.toString()
+                val quizRecord = QuizRecord(
+                    activity_name = activityName,
+                    answer = answerMap,
+                    mark = score
+                )
+                quizViewModel.addQuizRecord(quizRecord)
+
+                val intent = Intent(this, ResultActivity::class.java)
+                intent.putExtra("overallScore", questionList.size)
+                intent.putExtra("score",score )
+                println("------------score in studentquizdetail:"+score)
+                startActivity(intent)
+
             }
-
-            var questionRecord = QuizRecord(
-                activity_name = activityName,
-                answer = answerMap
-
-            )
-            quizViewModel.addQuizRecord(questionRecord)
-            println("------------test answerMap:"+answerMap)
-            println("------------test questionRecord:"+questionRecord)
-
         }
-
 
 
     }
 
-    private fun observer(){
+    private fun observer() {
         quizViewModel.studentQuestionDetail.observe(this) { state ->
-            when(state){
+            when (state) {
                 is UiState.Loading -> {
                     binding.progressBar.show()
-                    println("loading")
                 }
                 is UiState.Failure -> {
                     binding.progressBar.hide()
-                    Toast.makeText(this,state.error, Toast.LENGTH_LONG).show()
-                    println("Fail")
-
+                    Toast.makeText(this, state.error, Toast.LENGTH_LONG).show()
                 }
                 is UiState.Success -> {
                     binding.progressBar.hide()
-
                     adapter.updateList(state.data.toMutableList())
                 }
             }
         }
     }
-    private fun getViewHolderForPosition(position: Int): QuizDetailAdapter.MyViewHolder? {
-        return binding.recyclerActivity.findViewHolderForAdapterPosition(position) as? QuizDetailAdapter.MyViewHolder
-    }
-
-
-
 }
