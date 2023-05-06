@@ -84,7 +84,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="60dp"
-        android:background="@color/deeppurple"
+        android:background="@color/pink"
         android:text="Add student"
         android:visibility="invisible"
         android:textAppearance="?android:attr/textAppearanceLarge"

@@ -29,7 +29,7 @@
                 android:orientation="vertical"
                 android:gravity="center"
                 android:layout_height="wrap_content"
-                android:background="@color/deeppurple">
+                android:background="@color/pink">
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
