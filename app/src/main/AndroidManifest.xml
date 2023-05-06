@@ -20,11 +20,6 @@
             android:name=".ui.quiz.QuizDetailActivity"
             android:label="Quiz Detail"
             android:exported="false" />
-
-<!--        <activity-->
-<!--            android:name=".QuizStartingActivity"-->
-<!--            android:exported="false" />-->
-
         <activity
             android:name=".ui.start.activity.QuizDescActivity"
             android:exported="false" />
