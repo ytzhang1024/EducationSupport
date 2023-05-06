@@ -46,8 +46,6 @@
         app:layout_constraintStart_toStartOf="@+id/question_tv"
         app:layout_constraintTop_toBottomOf="@+id/question_tv" />
 
-
-
     <TextView
         android:id="@+id/question_text"
         android:layout_width="0dp"

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -12,12 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
+<<<<<<< HEAD
             <activity
                 android:name=".ui.quiz.StudentQuizDetailActivity"
                 android:exported="false" />
         <activity
             android:name=".ui.quiz.QuizDetailActivity"
             android:exported="false" />
+=======
+<!--        <activity-->
+<!--            android:name=".QuizStartingActivity"-->
+<!--            android:exported="false" />-->
+>>>>>>> 0cfb939f775a6523d986bac915229f11f9da1fa0
         <activity
             android:name=".ui.start.activity.QuizDescActivity"
             android:exported="false" />
