@@ -12,11 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
 
-            <activity
-                android:name=".ui.quiz.StudentQuizDetailActivity"
-                android:exported="false" />
+        <activity
+            android:name=".ui.quiz.StudentQuizDetailActivity"
+            android:label="Quiz Detail"
+            android:exported="false" />
         <activity
             android:name=".ui.quiz.QuizDetailActivity"
+            android:label="Quiz Detail"
             android:exported="false" />
 
 <!--        <activity-->
@@ -28,6 +30,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.start.Fragment.QuizDetailActivity"
+            android:label="Quiz Detail"
             android:exported="false" />
         <activity
             android:name=".ui.course.EnrollCourseActivity"
@@ -40,6 +43,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.course.CourseDetailActivity"
+            android:label="Course Detail"
             android:exported="false" />
         <activity
             android:name=".ui.course.TutorCourseActivity"
