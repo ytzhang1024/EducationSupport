@@ -547,6 +547,45 @@ override fun getStudentList(activityName: String, result: (UiState<List<User>>) 
         }
 }
 
+    override fun getCompletedActivitList(result: (UiState<List<Activity>>) -> Unit) {
+        var studentEmail = auth.currentUser?.email
+        val docRef = studentEmail?.let { database.collection("studentActivityMapping").document(it) }
+        if (docRef != null) {
+            docRef.get().addOnSuccessListener { documentSnapshot ->
+                val data = documentSnapshot.get("activity") //get activity student field
+                println("--------------------test data:"+data)
+
+                if (data != null){
+                    data as List<String>
+                    database.collection("activity").get()
+                        .addOnSuccessListener { querySnapshot2 ->
+                            val activities = arrayListOf<Activity>()
+
+                            for (doc in querySnapshot2) {
+                                val activityTmp = doc.toObject(Activity::class.java)
+
+                                if (data.contains(activityTmp.title)) {
+
+                                    activities.add(activityTmp)
+                                }
+                                Log.d("Firestore", doc.data.toString())
+                            }
+                            result.invoke(
+                                UiState.Success(activities)
+                            )
+                        }
+                        .addOnFailureListener { e ->
+                            Log.e("Firestore", "Error retrieving documents: $e")
+                        }
+                }
+
+            }
+                .addOnFailureListener { exception ->
+                    Log.e(TAG, "Error getting document", exception)
+                }
+        }
+    }
+
 
     override fun studentEnrollCourse(courseName: String?) {
         val email = auth.currentUser?.email
