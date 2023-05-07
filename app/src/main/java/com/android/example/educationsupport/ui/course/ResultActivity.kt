@@ -14,7 +14,7 @@ import com.android.example.educationsupport.ui.quiz.StudentReviewActivity
 import com.android.example.educationsupport.utils.UiState
 import com.android.example.educationsupport.utils.hide
 import com.android.example.educationsupport.utils.show
-
+//Only score
 class ResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding
 

@@ -71,10 +71,19 @@ class QuizActivity : AppCompatActivity() {
                 intent.putExtra("activityName", activityName)
                 startActivity(intent)
             }
+            binding.btnStatistic.show()
+            binding.btnStatistic.setOnClickListener{
+                val intent = Intent(this, ActStudentListActivity::class.java)
+                println("--------------------test activityName in quiz:"+ activityName)
+                intent.putExtra("activityName", activityName)
+                startActivity(intent)
+            }
         } else {
             binding.btnStartQuiz.show()
             println(activityName)
             binding.btnStartQuiz.setOnClickListener{
+
+                quizViewModel.studentEnrollActivity(activityName!!)
 
                 val intent = Intent(this, StudentQuizDetailActivity::class.java)
                 intent.putExtra("questionName", "Detailtest")
