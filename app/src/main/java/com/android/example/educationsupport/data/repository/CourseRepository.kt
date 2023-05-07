@@ -22,6 +22,7 @@ interface CourseRepository {
     fun studentEnrollCourse(courseName: String?)
     fun studentEnrollActivity(activityName: String?)
     fun getStudentList(activityName: String,result: (UiState<List<User>>) -> Unit)
+    fun getCompletedActivitList(result: (UiState<List<Activity>>) -> Unit)
     fun checkStudentIfFinishTask(activityName: String, result: (Boolean) -> Unit)
 
     fun addStudent(studentEmail:String, courseName: String)

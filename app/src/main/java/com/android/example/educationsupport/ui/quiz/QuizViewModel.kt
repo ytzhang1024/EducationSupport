@@ -3,10 +3,7 @@ package com.android.example.educationsupport.ui.quiz
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.android.example.educationsupport.data.model.Course
-import com.android.example.educationsupport.data.model.Question
-import com.android.example.educationsupport.data.model.QuizRecord
-import com.android.example.educationsupport.data.model.User
+import com.android.example.educationsupport.data.model.*
 import com.android.example.educationsupport.data.repository.CourseRepository
 import com.android.example.educationsupport.utils.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -91,7 +88,15 @@ class QuizViewModel @Inject constructor(
     }
 
 
+    private val _completedActivityList = MutableLiveData<UiState<List<Activity>>>()
+    val completedActivityList: LiveData<UiState<List<Activity>>>
+        get() = _completedActivityList
 
+
+    fun getCompletedActivitList() {
+        _completedActivityList.value = UiState.Loading
+        repository.getCompletedActivitList() { _completedActivityList.value = it }
+    }
 
 
 }
