@@ -13,19 +13,26 @@
         android:theme="@style/Theme.Test">
 
         <activity
+<<<<<<< HEAD
             android:name=".ui.quiz.StudentReviewActivity"
             android:exported="false" />
         <activity
             android:name=".ui.quiz.StudentQuizDetailActivity"
+=======
+            android:name=".ui.quiz.StudentQuizDetailActivity"
+            android:label="Quiz Detail"
+>>>>>>> 3926dabdaa6d773628b3bdcd52d5e07ef42d617b
             android:exported="false" />
         <activity
             android:name=".ui.quiz.QuizDetailActivity"
+            android:label="Quiz Detail"
             android:exported="false" />
         <activity
             android:name=".ui.start.activity.QuizDescActivity"
             android:exported="false" />
         <activity
             android:name=".ui.start.Fragment.QuizDetailActivity"
+            android:label="Quiz Detail"
             android:exported="false" />
         <activity
             android:name=".ui.course.EnrollCourseActivity"
@@ -38,6 +45,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.course.CourseDetailActivity"
+            android:label="Course Detail"
             android:exported="false" />
         <activity
             android:name=".ui.course.TutorCourseActivity"
