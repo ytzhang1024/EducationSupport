@@ -16,11 +16,13 @@ import android.os.Parcel
 import kotlin.collections.MutableMap
 
 
-data class QuizRecord(
-    var activity_name: String? = null,
-    var student_email: String? = null,
-    var answer: MutableMap<String, String>? = null,
-    var correct_answer: MutableMap<String, String>? = null,
-    var mark: Int? = null,
+data class Review(
+    var title: String? = null,
+    var option_A: String? = null,
+    var option_B: String? = null,
+    var option_C: String? = null,
+    var option_D: String? = null,
+    var student_answer: String? = null,
+    var correct_answer: String? = null
 
 )

@@ -19,6 +19,7 @@ interface CourseRepository {
     fun getQuestionList(activityName: String, result: (UiState<List<Question>>) -> Unit)
     fun studentGetQuestionDetail(activityName: String, result: (UiState<List<Question>>) -> Unit)
     fun addQuizRecord(quizRecord: QuizRecord, result: (UiState<Pair<QuizRecord,String>>) -> Unit)
+    fun studentGetReview(activityName: String,result: (UiState<List<QuizRecord>>) -> Unit)
     fun tutorGetQuestionDetail(questionName: String, result: (UiState<List<Question>>) -> Unit)
     fun enrollCourse(courseName: String, student_email: String)
     fun studentEnrollCourse(courseName: String?)

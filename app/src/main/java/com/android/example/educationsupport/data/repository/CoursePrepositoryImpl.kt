@@ -348,47 +348,6 @@ class CourseRepositoryImpl(
                     Log.e("Firestore", "Error retrieving documents: $e")
                 }
         }
-
-        //val binding: ActivityQuizDetailBinding
-//        val docRef = database.collection("activityQuestionMapping").document(activityName)
-//        docRef.get().addOnSuccessListener { documentSnapshot ->
-//            //get question id
-//            val data = documentSnapshot.get("question")
-//            println(data)
-//            if (data != null) {
-//                data as List<String>
-//                database.collection("question").get()
-//                    .addOnSuccessListener { querySnapshot2 ->
-//                        val questions = arrayListOf<Question>()
-//
-//                        for (doc in querySnapshot2) {
-//                            val questionTmp = doc.toObject(Question::class.java)
-//
-//                            if (data.contains(questionTmp.title)) {
-//                                questions.add(questionTmp)
-//                                println("????????????????????")
-//                                println("questions:"+questions)
-//                                println("questionTmp:"+questionTmp)
-//
-//                            }
-//
-//
-//                            //questions.add(questionTmp)
-//                        }
-//
-//                        result.invoke(
-//                            UiState.Success(questions)
-//                        )
-//                    }
-//                    .addOnFailureListener { e ->
-//                        Log.e("Firestore", "Error retrieving documents: $e")
-//                    }
-//            }
-//        }
-//            .addOnFailureListener { exception ->
-//                Log.e(TAG, "Error getting document", exception)
-//            }
-
     }
 
     override fun addQuizRecord(quizRecord: QuizRecord, result: (UiState<Pair<QuizRecord, String>>) -> Unit){
@@ -420,9 +379,9 @@ class CourseRepositoryImpl(
             if (quizRef != null) {
                 quizRef.set(quizRecord)
             }
-            if (quizRef != null) {
-                quizRef.update("answer", FieldValue.arrayUnion(quizRecord.answer))
-            }
+//            if (quizRef != null) {
+//                quizRef.update("answer", FieldValue.arrayUnion(quizRecord.answer))
+//            }
             if (studentToQuizRef != null) {
                 studentToQuizRef.get().addOnSuccessListener { documentSnapshot ->
                     if (documentSnapshot.exists()) {
@@ -440,6 +399,69 @@ class CourseRepositoryImpl(
             // ...
         }
     }
+
+//    override fun studentGetReview(activityName: String, result: (UiState<List<QuizRecord>>) -> Unit) {
+//        val student_email = auth.currentUser?.email
+//        val id = student_email + activityName
+//
+//        database.collection("quizRecord")
+//            .get()
+//            .addOnSuccessListener {
+//                val quizRecord = arrayListOf<QuizRecord>()
+//                for (id in it) {
+//                    val recordTmp = id.toObject(QuizRecord::class.java)
+//                    quizRecord.add(recordTmp)
+//                }
+//                result.invoke(
+//
+//                    UiState.Success(quizRecord)
+//                )
+//                println("===========================")
+//                println("courses:"+quizRecord)
+//            }
+//            .addOnFailureListener {
+//                result.invoke(
+//                    UiState.Failure(
+//                        it.localizedMessage
+//                    )
+//                )
+//            }
+//    }
+override fun studentGetReview(activityName: String, result: (UiState<List<QuizRecord>>) -> Unit) {
+    val student_email = auth.currentUser?.email
+    val id = student_email + activityName
+
+    database.collection("quizRecord")
+        .get()
+        .addOnSuccessListener { documents ->
+            val quizRecord = arrayListOf<QuizRecord>()
+            for (document in documents) {
+                println("--------------------Get review document:"+document)
+                val answerMap = document.get("answer") as? Map<String, String> ?: emptyMap()
+                val correctAnswerMap = document.get("correct_answer") as? Map<String, String> ?: emptyMap()
+                val quizRecordItem = QuizRecord(
+                    document.getString("activity_name"),
+                    document.getString("student_email"),
+                    answerMap.toMutableMap(),
+                    correctAnswerMap.toMutableMap(),
+                    document.getLong("mark")?.toInt()
+                )
+                if(student_email == document.getString("student_email")){
+                    if(activityName == document.getString("activity_name")){
+                        quizRecord.add(quizRecordItem)
+                        println("---------------test student answer:"+quizRecordItem.answer)
+                    }
+                }
+
+            }
+            result.invoke(UiState.Success(quizRecord))
+        }
+        .addOnFailureListener {
+            result.invoke(UiState.Failure(it.localizedMessage))
+        }
+}
+
+
 
     override fun tutorGetQuestionDetail(questionName: String, result: (UiState<List<Question>>) -> Unit) {
         //val binding: ActivityQuizDetailBinding

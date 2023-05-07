@@ -63,4 +63,18 @@ class QuizViewModel @Inject constructor(
     }
 
 
+
+    private val _stuentReview = MutableLiveData<UiState<List<QuizRecord>>>()
+    val stuentReview: LiveData<UiState<List<QuizRecord>>>
+        get() = _stuentReview
+
+
+    fun studentGetReview(activityName: String) {
+        _stuentReview.value = UiState.Loading
+        repository.studentGetReview(activityName) { _stuentReview.value = it }
+    }
+
+
+
+
 }

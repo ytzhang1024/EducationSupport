@@ -12,9 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
 
-            <activity
-                android:name=".ui.quiz.StudentQuizDetailActivity"
-                android:exported="false" />
+        <activity
+            android:name=".ui.quiz.StudentReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.quiz.StudentQuizDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.quiz.QuizDetailActivity"
             android:exported="false" />

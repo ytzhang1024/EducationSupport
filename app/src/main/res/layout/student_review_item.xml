@@ -12,12 +12,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="702dp"
         android:orientation="vertical"
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/question"
+            android:id="@+id/activity_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -26,7 +26,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/option_A"
+            android:id="@+id/student_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -35,37 +35,26 @@
             android:textStyle="bold" />
 
 
+
         <TextView
-            android:id="@+id/option_B"
+            android:id="@+id/student_answer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="hint"
             android:textSize="16sp" />
-
-
-        <TextView
-            android:id="@+id/option_C"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="hint"
-            android:textSize="16sp" />
-
-
-
-        <TextView
-            android:id="@+id/option_D"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="hint"
-            android:textSize="16sp" />
-
 
 
         <TextView
             android:id="@+id/correct_answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="hint"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/mark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

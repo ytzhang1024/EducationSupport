@@ -78,8 +78,8 @@ class QuizActivity : AppCompatActivity() {
 
                 val intent = Intent(this, StudentQuizDetailActivity::class.java)
                 intent.putExtra("questionName", "Detailtest")
-                val questionArrayList = ArrayList(questionList)
-                intent.putExtra("questionList", questionArrayList)
+                val questionArrayList = ArrayList(questionList) //改类型
+                intent.putExtra("questionList", questionArrayList)//quiz -> studentdetail -> result -> review
                 intent.putExtra("role", role)
                 intent.putExtra("activityName", activityName)
                 startActivity(intent)
@@ -117,7 +117,7 @@ class QuizActivity : AppCompatActivity() {
                 is UiState.Success -> {
                     binding.progressBar.hide()
                     adapter.updateList(state.data.toMutableList())
-                    questionList = state.data
+                    questionList = state.data  //取出getQuestionList里的questionlist？
                     adapter.updateList(questionList!!.toMutableList())
                     println("------------get question list (list type):"+ questionList!!.size)
                 }

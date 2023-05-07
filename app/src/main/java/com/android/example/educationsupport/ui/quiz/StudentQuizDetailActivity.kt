@@ -38,6 +38,7 @@ class StudentQuizDetailActivity : AppCompatActivity() {
         val activityName = intent.getStringExtra("activityName")
         val questionArrayList = intent.getParcelableArrayListExtra<Question>("questionList")
         val questionList = questionArrayList?.toList()
+        println("---------------questionList:"+questionList)
 
         setContentView(binding.root)
 
@@ -50,6 +51,7 @@ class StudentQuizDetailActivity : AppCompatActivity() {
         var j = 1
         var score = 0
         val answerMap = mutableMapOf<String, String>()
+        val correctAnswerMap = mutableMapOf<String, String>()
         if (questionList != null) {
             quizViewModel.studentGetQuestionDetail(questionList[0].title!!)
         }
@@ -70,22 +72,30 @@ class StudentQuizDetailActivity : AppCompatActivity() {
             if (j < questionList!!.size) {
                 val question = questionList[j] //翻页，因为第一次按下按钮是跳到第二页，所以j = 1
                 val questionTitle = questionList[j-1]//获取题目名字，因为第一次按下按钮获取第一页（第一题），所以j = 0
+
+
                 answerMap[questionTitle.title!!] = selectedOptions.toString()
+                correctAnswerMap[questionTitle.title!!] = questionList[j-1].correct_answer.toString()
                 j++
                 quizViewModel.studentGetQuestionDetail(question.title!!)
                 val quizRecord = QuizRecord(
                     activity_name = activityName,
+
                     answer = answerMap,
+                    correct_answer = correctAnswerMap,
                     mark = score
                 )
                 quizViewModel.addQuizRecord(quizRecord)
             } else {
 
                 val questionTitle = questionList[j-1]//获取题目名字，因为第一次按下按钮获取第一页（第一题），所以j = 0
+
                 answerMap[questionTitle.title!!] = selectedOptions.toString()
+                correctAnswerMap[questionTitle.title!!] = questionList[j-1].correct_answer.toString()
                 val quizRecord = QuizRecord(
                     activity_name = activityName,
                     answer = answerMap,
+                    correct_answer = correctAnswerMap,
                     mark = score
                 )
                 quizViewModel.addQuizRecord(quizRecord)
@@ -93,6 +103,8 @@ class StudentQuizDetailActivity : AppCompatActivity() {
                 val intent = Intent(this, ResultActivity::class.java)
                 intent.putExtra("overallScore", questionList.size)
                 intent.putExtra("score",score )
+                intent.putExtra("questionList", questionArrayList)
+                intent.putExtra("activityName", activityName)
                 println("------------score in studentquizdetail:"+score)
                 startActivity(intent)
 
