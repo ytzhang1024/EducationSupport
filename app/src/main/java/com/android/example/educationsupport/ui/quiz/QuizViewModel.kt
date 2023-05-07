@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.android.example.educationsupport.data.model.Course
 import com.android.example.educationsupport.data.model.Question
 import com.android.example.educationsupport.data.model.QuizRecord
+import com.android.example.educationsupport.data.model.User
 import com.android.example.educationsupport.data.repository.CourseRepository
 import com.android.example.educationsupport.utils.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -69,10 +70,26 @@ class QuizViewModel @Inject constructor(
         get() = _stuentReview
 
 
-    fun studentGetReview(activityName: String) {
+    fun studentGetReview(studentEmail: String, activityName: String) {
         _stuentReview.value = UiState.Loading
-        repository.studentGetReview(activityName) { _stuentReview.value = it }
+        repository.studentGetReview(studentEmail,activityName) { _stuentReview.value = it }
     }
+
+    fun studentEnrollActivity(activityName: String?) {
+        repository.studentEnrollActivity(activityName)
+    }
+
+
+    private val _getStudentList = MutableLiveData<UiState<List<User>>>()
+    val getStudentList: LiveData<UiState<List<User>>>
+        get() = _getStudentList
+
+
+    fun getStudentList(activityName: String) {
+        _getStudentList.value = UiState.Loading
+        repository.getStudentList(activityName) { _getStudentList.value = it }
+    }
+
 
 
 

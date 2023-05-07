@@ -1,9 +1,6 @@
 package com.android.example.educationsupport.data.repository
 
-import com.android.example.educationsupport.data.model.Activity
-import com.android.example.educationsupport.data.model.Course
-import com.android.example.educationsupport.data.model.Question
-import com.android.example.educationsupport.data.model.QuizRecord
+import com.android.example.educationsupport.data.model.*
 import com.android.example.educationsupport.utils.UiState
 
 interface CourseRepository {
@@ -19,10 +16,12 @@ interface CourseRepository {
     fun getQuestionList(activityName: String, result: (UiState<List<Question>>) -> Unit)
     fun studentGetQuestionDetail(activityName: String, result: (UiState<List<Question>>) -> Unit)
     fun addQuizRecord(quizRecord: QuizRecord, result: (UiState<Pair<QuizRecord,String>>) -> Unit)
-    fun studentGetReview(activityName: String,result: (UiState<List<QuizRecord>>) -> Unit)
+    fun studentGetReview(studentEmail: String, activityName: String,result: (UiState<List<QuizRecord>>) -> Unit)
     fun tutorGetQuestionDetail(questionName: String, result: (UiState<List<Question>>) -> Unit)
     fun enrollCourse(courseName: String, student_email: String)
     fun studentEnrollCourse(courseName: String?)
+    fun studentEnrollActivity(activityName: String?)
+    fun getStudentList(activityName: String,result: (UiState<List<User>>) -> Unit)
     fun checkStudentIfFinishTask(activityName: String, result: (Boolean) -> Unit)
 
     fun addStudent(studentEmail:String, courseName: String)

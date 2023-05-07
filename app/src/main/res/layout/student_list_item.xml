@@ -17,11 +17,12 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/question_name"
+            android:id="@+id/student_email"
             android:layout_width="match_parent"
-            android:layout_height="149dp"
-            android:text="question name"
+            android:layout_height="93dp"
+            android:text="student email"
             android:textSize="20sp" />
+
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

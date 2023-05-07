@@ -13,15 +13,14 @@
         android:theme="@style/Theme.Test">
 
         <activity
-<<<<<<< HEAD
+            android:name=".ui.quiz.ActStudentListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.quiz.StudentReviewActivity"
             android:exported="false" />
         <activity
             android:name=".ui.quiz.StudentQuizDetailActivity"
-=======
-            android:name=".ui.quiz.StudentQuizDetailActivity"
             android:label="Quiz Detail"
->>>>>>> 3926dabdaa6d773628b3bdcd52d5e07ef42d617b
             android:exported="false" />
         <activity
             android:name=".ui.quiz.QuizDetailActivity"

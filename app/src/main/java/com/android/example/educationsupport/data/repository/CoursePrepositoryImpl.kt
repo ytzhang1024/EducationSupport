@@ -2,10 +2,7 @@ package com.android.example.educationsupport.data.repository
 
 import android.content.ContentValues.TAG
 import android.util.Log
-import com.android.example.educationsupport.data.model.Activity
-import com.android.example.educationsupport.data.model.Course
-import com.android.example.educationsupport.data.model.Question
-import com.android.example.educationsupport.data.model.QuizRecord
+import com.android.example.educationsupport.data.model.*
 import com.android.example.educationsupport.databinding.ActivityQuizDetailBinding
 import com.android.example.educationsupport.utils.UiState
 import com.google.firebase.auth.FirebaseAuth
@@ -154,6 +151,7 @@ class CourseRepositoryImpl(
     }
 
     override fun addActivity(activity: Activity, result: (UiState<Pair<Activity, String>>) -> Unit) {
+        val student_email = auth.currentUser?.email
         val activityRef = activity.title?.let { database.collection("activity").document(it) }
         val activityToCourseRef = activity.course?.let {
             database.collection("courseActivityMapping").document(
@@ -171,6 +169,9 @@ class CourseRepositoryImpl(
         database.runBatch { batch ->
             if (activityRef != null) {
                 activityRef.set(activity)
+            }
+            if (activityRef != null) {
+                activityRef.update("student", FieldValue.arrayUnion(student_email))
             }
 
             activityToCourseRef?.update("activity", FieldValue.arrayUnion(activity.title))
@@ -400,36 +401,16 @@ class CourseRepositoryImpl(
         }
     }
 
-//    override fun studentGetReview(activityName: String, result: (UiState<List<QuizRecord>>) -> Unit) {
-//        val student_email = auth.currentUser?.email
-//        val id = student_email + activityName
-//
-//        database.collection("quizRecord")
-//            .get()
-//            .addOnSuccessListener {
-//                val quizRecord = arrayListOf<QuizRecord>()
-//                for (id in it) {
-//                    val recordTmp = id.toObject(QuizRecord::class.java)
-//                    quizRecord.add(recordTmp)
-//                }
-//                result.invoke(
-//
-//                    UiState.Success(quizRecord)
-//                )
-//                println("===========================")
-//                println("courses:"+quizRecord)
-//            }
-//            .addOnFailureListener {
-//                result.invoke(
-//                    UiState.Failure(
-//                        it.localizedMessage
-//                    )
-//                )
-//            }
-//    }
-override fun studentGetReview(activityName: String, result: (UiState<List<QuizRecord>>) -> Unit) {
-    val student_email = auth.currentUser?.email
-    val id = student_email + activityName
+
+override fun studentGetReview(studentEmail: String, activityName: String, result: (UiState<List<QuizRecord>>) -> Unit) {
+    var email: String? = null
+    if(studentEmail == "studentEmail"){
+        email = auth.currentUser?.email
+    }else{
+        email = studentEmail
+    }
+
+    val id = email + activityName
 
     database.collection("quizRecord")
         .get()
@@ -446,7 +427,7 @@ override fun studentGetReview(activityName: String, result: (UiState<List<QuizRe
                     correctAnswerMap.toMutableMap(),
                     document.getLong("mark")?.toInt()
                 )
-                if(student_email == document.getString("student_email")){
+                if(email == document.getString("student_email")){
                     if(activityName == document.getString("activity_name")){
                         quizRecord.add(quizRecordItem)
                         println("---------------test student answer:"+quizRecordItem.answer)
@@ -506,7 +487,9 @@ override fun studentGetReview(activityName: String, result: (UiState<List<QuizRe
 
 
 
-    override fun enrollCourse(courseName: String, student_email: String) {
+   //
+   //The teacher adds the student to the course by entering the student's email address
+   override fun enrollCourse(courseName: String, student_email: String) {
         val docRef = database.collection("studentCourseMapping").document(student_email)
         docRef.get().addOnSuccessListener {
             
@@ -514,6 +497,56 @@ override fun studentGetReview(activityName: String, result: (UiState<List<QuizRe
             Log.e(TAG, "Fail to enroll")
         }
     }
+
+    override fun studentEnrollActivity(activityName: String?) {
+        val email = auth.currentUser?.email
+            if (activityName != null) {
+                database.collection("activity").document(activityName).update("student", FieldValue.arrayUnion(email))
+                println("----------------------add student email to activity document")
+            }
+        if (activityName != null) {
+            database.collection("activity").document(activityName).update("student", FieldValue.arrayUnion(email))
+            println("----------------------add student email to activity document")
+        }
+    }
+
+
+override fun getStudentList(activityName: String, result: (UiState<List<User>>) -> Unit) {
+    val docRef = database.collection("activity").document(activityName)
+    docRef.get().addOnSuccessListener { documentSnapshot ->
+        val data = documentSnapshot.get("student") //get activity student field
+        println("--------------------test data:"+data)
+
+        if (data != null){
+            data as List<String>
+            database.collection("user").get()
+                .addOnSuccessListener { querySnapshot2 ->
+                    val users = arrayListOf<User>()
+
+                    for (doc in querySnapshot2) {
+                        val userTmp = doc.toObject(User::class.java)
+
+                        if (data.contains(userTmp.email)) {
+
+                            users.add(userTmp)
+                        }
+                        Log.d("Firestore", doc.data.toString())
+                    }
+                    result.invoke(
+                        UiState.Success(users)
+                    )
+                }
+                .addOnFailureListener { e ->
+                    Log.e("Firestore", "Error retrieving documents: $e")
+                }
+        }
+
+    }
+        .addOnFailureListener { exception ->
+            Log.e(TAG, "Error getting document", exception)
+        }
+}
+
 
     override fun studentEnrollCourse(courseName: String?) {
         val email = auth.currentUser?.email

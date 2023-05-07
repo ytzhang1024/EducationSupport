@@ -29,7 +29,7 @@ class StudentReviewActivity : AppCompatActivity() {
     private var role: String? = null
     private lateinit var binding: ActivityStudentReviewBinding
     private val quizViewModel: QuizViewModel by viewModels()
-    //所有question都跳转到question detail，并传值
+
     private val adapter by lazy {
         StudentReviewlAdapter(
             onItemClick = { _, quizRecord -> }
@@ -40,7 +40,7 @@ class StudentReviewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityStudentReviewBinding.inflate(layoutInflater)
         database = FirebaseFirestore.getInstance()
-        val questionName = intent.getStringExtra("questionName")
+        var studentEmail = intent.getStringExtra("studentEmail")
         val activityName = intent.getStringExtra("activityName")
         val questionArrayList = intent.getParcelableArrayListExtra<Question>("questionList")
         val questionList = questionArrayList?.toList()
@@ -50,11 +50,16 @@ class StudentReviewActivity : AppCompatActivity() {
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         binding.recyclerActivity.layoutManager = staggeredGridLayoutManager
         binding.recyclerActivity.adapter = adapter
+        println("--------------------test studentEmail:"+ studentEmail)
+        println("--------------------test activityName:"+ activityName)
 
-
+        if(studentEmail == null){
+            studentEmail = "studentEmail"
+        }
 
         if (activityName != null) {
-            quizViewModel.studentGetReview(activityName)
+            println("--------------------test studentEmail:"+ studentEmail)
+            quizViewModel.studentGetReview(studentEmail,activityName)
         }
 
 
