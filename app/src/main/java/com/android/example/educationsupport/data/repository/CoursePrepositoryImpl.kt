@@ -501,20 +501,20 @@ override fun studentGetReview(studentEmail: String, activityName: String, result
     override fun studentEnrollActivity(activityName: String?) {
         val email = auth.currentUser?.email
             if (activityName != null) {
-                database.collection("activity").document(activityName).update("student", FieldValue.arrayUnion(email))
+                database.collection("activity").document(activityName).update("students", FieldValue.arrayUnion(email))
                 println("----------------------add student email to activity document")
             }
-        if (activityName != null) {
-            database.collection("activity").document(activityName).update("student", FieldValue.arrayUnion(email))
-            println("----------------------add student email to activity document")
-        }
+//        if (activityName != null) {
+//            database.collection("activity").document(activityName).update("students", FieldValue.arrayUnion(email))
+//            println("----------------------add student email to activity document")
+//        }
     }
 
 
 override fun getStudentList(activityName: String, result: (UiState<List<User>>) -> Unit) {
     val docRef = database.collection("activity").document(activityName)
     docRef.get().addOnSuccessListener { documentSnapshot ->
-        val data = documentSnapshot.get("student") //get activity student field
+        val data = documentSnapshot.get("students") //get activity student field
         println("--------------------test data:"+data)
 
         if (data != null){
