@@ -9,199 +9,148 @@
     app:layoutManager="LinearLayoutManager">
 
 
-    <CheckBox
-        android:id="@+id/checkBox_D"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="192dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <CheckBox
-        android:id="@+id/checkBox_C"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox_D"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox_A"
-        app:layout_constraintVertical_bias="0.728"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btnSubmitQuestion"
-        android:layout_width="267dp"
-        android:layout_height="49dp"
-        android:text="Submit"
-        android:textColor="@color/white"
-        android:background="@color/pink"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.869" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/option_A"
-        android:layout_width="242dp"
-        android:layout_height="53dp"
-        android:hint="hint"
-        app:layout_constraintBottom_toTopOf="@+id/option_B"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.836"
-        tools:ignore="MissingConstraints" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/option_B"
-        android:layout_width="238dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="100dp"
-        android:hint="hint"
-        app:layout_constraintBottom_toTopOf="@+id/option_C"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox_B"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.845"
-        tools:ignore="MissingConstraints" />
-
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/question_title"
         android:layout_width="290dp"
         android:layout_height="48dp"
         android:hint="title"
-        app:layout_constraintBottom_toTopOf="@+id/option_A"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/option_C"
-        android:layout_width="241dp"
-        android:layout_height="49dp"
-        android:hint="hint"
-        app:layout_constraintBottom_toTopOf="@+id/option_D"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.88"
-        tools:ignore="MissingConstraints" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/option_D"
-        android:layout_width="247dp"
-        android:layout_height="47dp"
-        android:hint="hint"
-        app:layout_constraintBottom_toTopOf="@+id/btnSubmitQuestion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.899"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:text="A"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintEnd_toStartOf="@+id/option_A"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.716"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="B"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintEnd_toStartOf="@+id/option_B"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.794"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="C"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
-        app:layout_constraintEnd_toStartOf="@+id/option_C"
-        app:layout_constraintHorizontal_bias="0.46"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.824"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="14dp"
-        android:layout_height="22dp"
-        android:text="D"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/option_D"
-        app:layout_constraintHorizontal_bias="0.544"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.692"
+        app:layout_constraintVertical_bias="0.499"
         tools:ignore="MissingConstraints" />
 
     <CheckBox
         android:id="@+id/checkBox_A"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox_D"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toEndOf="@+id/option_A"
+        android:layout_marginEnd="16dp"
+        android:padding="16dp"
+        android:text="A"
+        android:textSize="20sp"
+        android:buttonTint="@color/pink"
+        app:layout_constraintBaseline_toBaselineOf="@+id/option_A"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/option_A"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="A"
+        android:padding="16dp"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/option_B"
+        app:layout_constraintEnd_toStartOf="@+id/checkBox_A"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.442"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/option_B"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="B"
+        android:padding="16dp"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/option_C"
+        app:layout_constraintEnd_toStartOf="@+id/checkBox_B"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/option_A"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/option_C"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="C"
+        android:padding="16dp"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/option_D"
+        app:layout_constraintEnd_toStartOf="@+id/checkBox_C"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/option_B"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/option_D"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="D"
+        android:padding="16dp"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnSubmitQuestion"
+        app:layout_constraintEnd_toStartOf="@+id/checkBox_D"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/option_C"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <CheckBox
+        android:id="@+id/checkBox_D"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:padding="16dp"
+        android:text="D"
+        android:textSize="20sp"
+        android:buttonTint="@color/pink"
+        app:layout_constraintBaseline_toBaselineOf="@+id/option_D"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBox_C"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:padding="16dp"
+        android:text="C"
+        android:textSize="20sp"
+        android:buttonTint="@color/pink"
+        app:layout_constraintBaseline_toBaselineOf="@+id/option_C"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <CheckBox
         android:id="@+id/checkBox_B"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox_C"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox_A"
-        tools:ignore="MissingConstraints" />
+        android:layout_marginEnd="16dp"
+        android:padding="16dp"
+        android:text="B"
+        android:textSize="20sp"
+        android:buttonTint="@color/pink"
+        app:layout_constraintBaseline_toBaselineOf="@+id/option_B"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Tick if it is correct answer"
-        app:layout_constraintBottom_toTopOf="@+id/btnSubmitQuestion"
+    <Button
+        android:id="@+id/btnSubmitQuestion"
+        android:layout_width="267dp"
+        android:layout_height="49dp"
+        android:background="@color/pink"
+        android:text="Submit"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option_D"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Question"
-        app:layout_constraintBottom_toTopOf="@+id/question_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.674" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

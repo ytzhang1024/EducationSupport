@@ -38,9 +38,11 @@
             android:exported="false" />
         <activity
             android:name=".ui.quiz.QuizActivity"
+            android:label="Quiz"
             android:exported="false" />
         <activity
             android:name=".ui.quiz.CreateQuestionActivity"
+            android:label="Create Question"
             android:exported="false" />
         <activity
             android:name=".ui.course.CourseDetailActivity"
