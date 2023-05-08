@@ -21,46 +21,39 @@
 
         <Button
             android:id="@+id/courseManagementBtn"
+            android:layout_width="94dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="5sp"
+            android:background="@color/pink"
             android:text="Create Course"
             android:textColor="@color/white"
-            android:background="@color/pink"
             android:textSize="15sp" />
 
-<!--        <Button-->
-<!--            android:id="@+id/allBtn"-->
-<!--            android:layout_rowWeight="1"-->
-<!--            android:layout_columnWeight="1"-->
-<!--            android:layout_gravity="fill"-->
-<!--            android:layout_margin="5sp"-->
-<!--            android:text="All Courses"-->
-<!--            android:textSize="15sp" />-->
         <Button
             android:id="@+id/myCourseBtn"
+            android:layout_width="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="5sp"
+            android:background="@color/pink"
             android:text="My Course"
             android:textColor="@color/white"
-            android:background="@color/pink"
             android:textSize="15sp" />
 
         <Button
             android:id="@+id/studentManagementBtn"
+            android:layout_width="5dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="5sp"
+            android:background="@color/pink"
             android:text="Student Management"
             android:textColor="@color/white"
-            android:background="@color/pink"
             android:textSize="15sp" />
-
-
 
     </GridLayout>
 

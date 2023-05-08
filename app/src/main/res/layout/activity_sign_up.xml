@@ -24,13 +24,15 @@
         android:id="@+id/emailLayout"
         style="@style/LoginTextInputOuterFieldStyle"
         android:layout_width="377dp"
-        android:layout_height="49dp"
+        android:layout_height="51dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="316dp"
+        android:layout_marginTop="200dp"
         app:boxStrokeColor="@color/pink"
         app:hintTextColor="@color/pink"
+        app:layout_constraintVertical_bias="0.1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/passwordLayout"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -123,6 +125,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.3"
         app:layout_constraintTop_toBottomOf="@+id/confirmPasswordLayout" />
     <TextView
         android:id="@+id/textView"

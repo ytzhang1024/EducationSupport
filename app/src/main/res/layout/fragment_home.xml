@@ -21,13 +21,14 @@
 
         <Button
             android:id="@+id/selectedBtn2"
+            android:layout_width="22dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="5sp"
+            android:background="@color/pink"
             android:text="Selected Courses"
             android:textColor="@color/white"
-            android:background="@color/pink"
             android:textSize="18sp" />
 
         <Button
@@ -43,13 +44,14 @@
 
         <Button
             android:id="@+id/marksBtn2"
+            android:layout_width="120dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="5sp"
+            android:background="@color/pink"
             android:text="Course Marks"
             android:textColor="@color/white"
-            android:background="@color/pink"
             android:textSize="18sp" />
 
         <Button

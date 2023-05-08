@@ -12,24 +12,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CourseName"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="@color/pink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/course_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/sallow_pink"
         android:text="DescriptionDescriptionDescription"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.123" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_activity"
@@ -37,12 +41,10 @@
         android:layout_height="match_parent"
         android:layout_marginVertical="220dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintTop_toTopOf="@+id/course_name"
         tools:listitem="@layout/activity_item" />
 
     <ProgressBar
@@ -65,17 +67,16 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="60dp"
         android:background="@color/pink"
         android:text="Create Activity"
-        android:visibility="invisible"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/white"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recycler_activity"
-        app:layout_constraintVertical_bias="0.818" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAddStudent" />
+
     <Button
         android:id="@+id/btnAddStudent"
         android:layout_width="355dp"
@@ -83,41 +84,37 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="60dp"
         android:background="@color/pink"
         android:text="Add student"
-        android:visibility="invisible"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#fff"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/course_description"
-        app:layout_constraintVertical_bias="0.818" />
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="137dp"
-        tools:ignore="MissingConstraints">
+        style="@style/LoginTextInputOuterFieldStyle"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_activity"
+        app:layout_constraintTop_toBottomOf="@+id/course_description"
+        app:layout_constraintVertical_bias="0.278"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="1dp">
 
-<!--        <com.google.android.material.textfield.TextInputEditText-->
-<!--            android:id="@+id/studentEmailET"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="Type student email"-->
-<!--            android:visibility="invisible"-->
-<!--            android:inputType="text" />-->
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/studentEmailET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
             android:hint="Type student email"
             android:inputType="text"
+            app:boxStrokeColor="@color/pink"
+            app:hintTextColor="@color/sallow_pink"
             android:visibility="gone" />
-    </com.google.android.material.textfield.TextInputLayout>
-
+        </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
