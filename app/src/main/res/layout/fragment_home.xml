@@ -26,7 +26,7 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="5sp"
-            android:background="@color/pink"
+            android:background="#2cc6ff"
             android:text="Selected Courses"
             android:textColor="@color/white"
             android:textSize="18sp" />
@@ -39,7 +39,7 @@
             android:layout_margin="5sp"
             android:text="All Courses"
             android:textColor="@color/white"
-            android:background="@color/pink"
+            android:background="#2cc6ff"
             android:textSize="18sp" />
 
         <Button
@@ -49,7 +49,7 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="5sp"
-            android:background="@color/pink"
+            android:background="#2cc6ff"
             android:text="Course Marks"
             android:textColor="@color/white"
             android:textSize="18sp" />
@@ -62,9 +62,8 @@
             android:layout_margin="5sp"
             android:text="quiz"
             android:textColor="@color/white"
-            android:background="@color/pink"
+            android:background="#2cc6ff"
             android:textSize="18sp" />
-
 
     </GridLayout>
 

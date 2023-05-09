@@ -32,7 +32,7 @@
         android:padding="16dp"
         android:text="A"
         android:textSize="20sp"
-        android:buttonTint="@color/pink"
+        android:buttonTint="@color/blue"
         app:layout_constraintBaseline_toBaselineOf="@+id/option_A"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -112,7 +112,7 @@
         android:padding="16dp"
         android:text="D"
         android:textSize="20sp"
-        android:buttonTint="@color/pink"
+        android:buttonTint="@color/blue"
         app:layout_constraintBaseline_toBaselineOf="@+id/option_D"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -124,7 +124,7 @@
         android:padding="16dp"
         android:text="C"
         android:textSize="20sp"
-        android:buttonTint="@color/pink"
+        android:buttonTint="@color/blue"
         app:layout_constraintBaseline_toBaselineOf="@+id/option_C"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -136,7 +136,7 @@
         android:padding="16dp"
         android:text="B"
         android:textSize="20sp"
-        android:buttonTint="@color/pink"
+        android:buttonTint="@color/blue"
         app:layout_constraintBaseline_toBaselineOf="@+id/option_B"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -144,7 +144,7 @@
         android:id="@+id/btnSubmitQuestion"
         android:layout_width="267dp"
         android:layout_height="49dp"
-        android:background="@color/pink"
+        android:background="@color/blue"
         android:text="Submit"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

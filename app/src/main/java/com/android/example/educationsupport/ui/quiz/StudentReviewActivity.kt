@@ -50,8 +50,8 @@ class StudentReviewActivity : AppCompatActivity() {
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         binding.recyclerActivity.layoutManager = staggeredGridLayoutManager
         binding.recyclerActivity.adapter = adapter
-        println("--------------------test studentEmail:"+ studentEmail)
-        println("--------------------test activityName:"+ activityName)
+//        println("--------------------test studentEmail:"+ studentEmail)
+//        println("--------------------test activityName:"+ activityName)
 
         if(studentEmail == null){
             studentEmail = "studentEmail"

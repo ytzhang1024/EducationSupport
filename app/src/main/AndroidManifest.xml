@@ -17,6 +17,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.quiz.StudentReviewActivity"
+            android:label="Student Review"
             android:exported="false" />
         <activity
             android:name=".ui.quiz.StudentQuizDetailActivity"
@@ -35,6 +36,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.course.EnrollCourseActivity"
+            android:label="Enrol Courses"
             android:exported="false" />
         <activity
             android:name=".ui.quiz.QuizActivity"
@@ -50,12 +52,15 @@
             android:exported="false" />
         <activity
             android:name=".ui.course.TutorCourseActivity"
+            android:label="Tutor Courses"
             android:exported="false" />
         <activity
             android:name=".ui.course.StudentMarkListActivity"
+            android:label="Course Marks"
             android:exported="false" />
         <activity
             android:name=".ui.course.CourseResultActivity"
+            android:label="Course Marks"
             android:exported="false" />
         <activity
             android:name=".ui.quiz.CreateActActivity"
@@ -79,12 +84,15 @@
             android:theme="@style/Theme.Test.NoActionBar" />
         <activity
             android:name=".ui.dashboard.ViewUserActivity"
+            android:label="User Info"
             android:exported="false" />
         <activity
             android:name=".ui.dashboard.UserProfileActivity"
+            android:label="User Profile"
             android:exported="true" />
         <activity
             android:name=".ui.base.SignInActivity"
+            android:label="Sign In"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -94,6 +102,7 @@
         </activity>
         <activity
             android:name=".ui.base.SignUpActivity"
+            android:label="Sign Up"
             android:exported="false" />
         <activity
             android:name=".ui.home.StudentHomeActivity"
@@ -103,6 +112,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.course.AllCoursesActivity"
+            android:label="All Courses"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
