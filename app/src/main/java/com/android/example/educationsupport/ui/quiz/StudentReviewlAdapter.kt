@@ -1,5 +1,6 @@
 package com.android.example.educationsupport.ui.quiz
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +11,7 @@ import com.android.example.educationsupport.databinding.QuestionDetailItemBindin
 import com.android.example.educationsupport.databinding.StudentReviewItemBinding
 import com.android.example.educationsupport.databinding.TutorQuestionDetailItemBinding
 
-//studentQuizDetailAdapter
+// studentQuizDetailAdapter
 
 class StudentReviewlAdapter(
     val onItemClick: (Int, QuizRecord) -> Unit
@@ -20,22 +21,41 @@ class StudentReviewlAdapter(
 
 
     inner class MyViewHolder(val binding: StudentReviewItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: QuizRecord){
+        fun bind(item: QuizRecord) {
 
-            binding.activityName.setText("Activity:"+item.activity_name)
+            binding.activityName.setText("Activity:" + item.activity_name)
 
-            binding.studentEmail.setText("Email:"+item.student_email)
+            binding.studentEmail.setText("Email:" + item.student_email)
 
-            binding.studentAnswer.setText("student answer:"+item.answer)
+            val ansList = StringBuilder()
+            item.answer.let {
+                if (it != null) {
+                    for ((key, value) in it) {
+                        ansList.append("$key: $value")
+                        ansList.append("\n")
+                    }
+                }
+            }
 
-            binding.correctAnswer.setText("correct answer:"+item.correct_answer.toString())
+            val corList = StringBuilder()
+            item.correct_answer.let {
+                if (it != null) {
+                    for ((key, value) in it) {
+                        corList.append("$key: $value")
+                        corList.append("\n")
+                    }
+                }
+            }
 
-            binding.mark.setText("mark:"+item.mark)
+            binding.studentAnswer.text =  ansList.toString()
+            binding.correctAnswer.text = corList.toString()
 
-            binding.itemLayout.setOnClickListener { onItemClick.invoke(adapterPosition,item) }
+//            binding.correctAnswer.setText("correct answer:" + item.correct_answer.toString())
+
+            binding.mark.setText("mark:" + item.mark)
+
+            binding.itemLayout.setOnClickListener { onItemClick.invoke(adapterPosition, item) }
         }
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentReviewlAdapter.MyViewHolder {
@@ -56,13 +76,4 @@ class StudentReviewlAdapter(
         this.list = list
         notifyDataSetChanged()
     }
-
-
-
-
-
-
-
-
-
 }

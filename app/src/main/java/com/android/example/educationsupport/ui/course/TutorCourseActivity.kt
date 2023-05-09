@@ -19,7 +19,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TutorCourseActivity : AppCompatActivity() {
 
-
     val TAG: String = "TutorCourseActivity"
     private lateinit var binding: ActivityCourseBinding
     private val tutorCourseViewModel: TutorCourseViewModel by viewModels()
@@ -55,7 +54,7 @@ class TutorCourseActivity : AppCompatActivity() {
 
     }
 
-    private fun observer(){
+    private fun observer() {
         tutorCourseViewModel.tutorCourse.observe(this) { state ->
             when(state){
                 is UiState.Loading -> {

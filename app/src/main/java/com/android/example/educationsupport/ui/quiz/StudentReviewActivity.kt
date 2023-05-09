@@ -43,6 +43,7 @@ class StudentReviewActivity : AppCompatActivity() {
         var studentEmail = intent.getStringExtra("studentEmail")
         val activityName = intent.getStringExtra("activityName")
         val questionArrayList = intent.getParcelableArrayListExtra<Question>("questionList")
+
         val questionList = questionArrayList?.toList()
 
         setContentView(binding.root)
@@ -50,22 +51,17 @@ class StudentReviewActivity : AppCompatActivity() {
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         binding.recyclerActivity.layoutManager = staggeredGridLayoutManager
         binding.recyclerActivity.adapter = adapter
-//        println("--------------------test studentEmail:"+ studentEmail)
-//        println("--------------------test activityName:"+ activityName)
+//        println("--------------------test studentEmail:" + studentEmail)
+//        println("--------------------test activityName:" + activityName)
 
-        if(studentEmail == null){
+        if(studentEmail == null) {
             studentEmail = "studentEmail"
         }
 
         if (activityName != null) {
-            println("--------------------test studentEmail:"+ studentEmail)
-            quizViewModel.studentGetReview(studentEmail,activityName)
+//            println("--------------------test studentEmail:" + studentEmail)
+            quizViewModel.studentGetReview(studentEmail, activityName)
         }
-
-
-
-
-
 
     }
     private fun observer(){
@@ -83,7 +79,6 @@ class StudentReviewActivity : AppCompatActivity() {
                 }
                 is UiState.Success -> {
                     binding.progressBar.hide()
-
                     adapter.updateList(state.data.toMutableList())
                 }
             }

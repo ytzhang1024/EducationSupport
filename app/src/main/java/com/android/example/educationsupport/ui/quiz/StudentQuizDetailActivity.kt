@@ -38,7 +38,7 @@ class StudentQuizDetailActivity : AppCompatActivity() {
         val activityName = intent.getStringExtra("activityName")
         val questionArrayList = intent.getParcelableArrayListExtra<Question>("questionList")
         val questionList = questionArrayList?.toList()
-        println("---------------questionList:"+questionList)
+        println("---------------questionList:" + questionList)
 
         setContentView(binding.root)
 
@@ -64,14 +64,14 @@ class StudentQuizDetailActivity : AppCompatActivity() {
                 viewHolder?.let {
                     val options = it.getSelectedOptions() //get selected answer
                     options?.let { selectedOptions.addAll(it) }
-                    it.setCheckBox()// reset checkbox
+                    it.setCheckBox() // reset checkbox
                     score = it.calculate(score, selectedOptions.toString())!! // calculate scores
                 }
             }
 
             if (j < questionList!!.size) {
-                val question = questionList[j] //翻页，因为第一次按下按钮是跳到第二页，所以j = 1
-                val questionTitle = questionList[j-1]//获取题目名字，因为第一次按下按钮获取第一页（第一题），所以j = 0
+                val question = questionList[j] // 翻页，因为第一次按下按钮是跳到第二页，所以j = 1
+                val questionTitle = questionList[j-1] // 获取题目名字，因为第一次按下按钮获取第一页（第一题），所以j = 0
 
 
                 answerMap[questionTitle.title!!] = selectedOptions.toString()
@@ -80,23 +80,22 @@ class StudentQuizDetailActivity : AppCompatActivity() {
                 quizViewModel.studentGetQuestionDetail(question.title!!)
                 val quizRecord = QuizRecord(
                     activity_name = activityName,
-
                     answer = answerMap,
                     correct_answer = correctAnswerMap,
-                    mark = score
+                    mark = score,
                 )
                 quizViewModel.addQuizRecord(quizRecord)
             } else {
 
-                val questionTitle = questionList[j-1]//获取题目名字，因为第一次按下按钮获取第一页（第一题），所以j = 0
+                val questionTitle = questionList[j-1] //获取题目名字，因为第一次按下按钮获取第一页（第一题），所以j = 0
 
                 answerMap[questionTitle.title!!] = selectedOptions.toString()
-                correctAnswerMap[questionTitle.title!!] = questionList[j-1].correct_answer.toString()
+                correctAnswerMap[questionTitle.title!!] = questionList[j - 1].correct_answer.toString()
                 val quizRecord = QuizRecord(
                     activity_name = activityName,
                     answer = answerMap,
                     correct_answer = correctAnswerMap,
-                    mark = score
+                    mark = score,
                 )
                 quizViewModel.addQuizRecord(quizRecord)
 
@@ -110,8 +109,6 @@ class StudentQuizDetailActivity : AppCompatActivity() {
 
             }
         }
-
-
     }
 
     private fun observer() {

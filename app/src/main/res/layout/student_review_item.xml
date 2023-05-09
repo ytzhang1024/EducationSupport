@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:backgroundTint="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="10dp"
     android:id="@+id/item_layout"
     app:cardCornerRadius="8dp"
@@ -34,12 +35,31 @@
             android:textStyle="bold" />
 
         <TextView
+            android:text="Student Answer:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="hint"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/student_answer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="hint"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:text="Correct Answer:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="hint"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/correct_answer"
@@ -47,7 +67,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="hint"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/mark"
@@ -55,6 +76,19 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="hint"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/recycler_mark"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginVertical="16dp"-->
+<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            tools:listitem="@layout/mark_item"/>-->
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
