@@ -51,6 +51,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
             val intent = Intent(activity, CourseResultActivity::class.java)
             startActivity(intent)
         }
+
+
         return root
     }
 

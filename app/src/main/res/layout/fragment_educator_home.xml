@@ -26,7 +26,7 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="5sp"
-            android:background="#2cc6ff"
+            android:background="@color/pink"
             android:text="Create Course"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -38,7 +38,7 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="5sp"
-            android:background="#2cc6ff"
+            android:background="@color/pink"
             android:text="My Course"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -50,7 +50,7 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="5sp"
-            android:background="#2cc6ff"
+            android:background="@color/pink"
             android:text="Student Management"
             android:textColor="@color/white"
             android:textSize="15sp" />

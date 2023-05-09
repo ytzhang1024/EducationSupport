@@ -23,23 +23,21 @@
             android:id="@+id/relativeLayout1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <LinearLayout
                 android:id="@+id/linearlayout1"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 android:gravity="center"
                 android:layout_height="wrap_content"
-                android:background="@color/blue">
-
+                android:background="@color/pink">
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_marginTop="20dp"
                     android:padding="12dp"
                     android:background="@drawable/circle_stroke_white"
-                    android:src="@drawable/ic_score" />
-
+                    android:src="@drawable/ic_score"
+                    />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -50,7 +48,6 @@
                     android:layout_marginBottom="20dp"
                     android:textSize="22sp"/>
             </LinearLayout>
-
             <ImageView
                 android:id="@+id/imageView1"
                 android:layout_width="20dp"
@@ -115,7 +112,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@color/blue"
+                    android:background="@color/pink"
                     android:textColor="@color/white"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"

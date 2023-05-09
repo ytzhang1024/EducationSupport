@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:id="@+id/item_layout">
-
     <TextView
         android:id="@+id/course_name"
         android:layout_width="wrap_content"
@@ -14,7 +13,7 @@
         android:text="CourseName"
         android:textSize="25dp"
         android:textStyle="bold"
-        android:textColor="@color/blue"
+        android:textColor="@color/pink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +33,7 @@
             android:layout_marginTop="44dp"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:textColor="@color/sallow_blue"
+            android:textColor="@color/sallow_pink"
             android:text="DescriptionDescriptionDescription"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
@@ -75,7 +74,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:background="@color/blue"
+        android:background="@color/pink"
         android:text="Create Activity"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/white"
@@ -91,7 +90,7 @@
         android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:background="@color/blue"
+        android:background="@color/pink"
         android:text="Add student"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#fff"
@@ -123,7 +122,7 @@
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
             android:visibility="gone"
-            app:boxStrokeColor="@color/blue"
-            app:hintTextColor="@color/sallow_blue" />
+            app:boxStrokeColor="@color/pink"
+            app:hintTextColor="@color/sallow_pink" />
     </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,7 +35,7 @@
         android:layout_height="49dp"
         android:text="Submit"
         android:textColor="@color/white"
-        android:background="@color/blue"
+        android:background="@color/pink"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

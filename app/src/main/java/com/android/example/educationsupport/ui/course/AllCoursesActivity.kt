@@ -41,11 +41,14 @@ class AllCoursesActivity : AppCompatActivity() {
         binding = ActivityCourseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         allCourseViewModel.getCourseList()
         observer()
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         binding.recyclerCourse.layoutManager = staggeredGridLayoutManager
         binding.recyclerCourse.adapter = adapter
+
+
     }
 
     private fun observer(){
