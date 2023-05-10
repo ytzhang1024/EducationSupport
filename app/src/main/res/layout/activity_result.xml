@@ -29,7 +29,7 @@
                 android:orientation="vertical"
                 android:gravity="center"
                 android:layout_height="wrap_content"
-                android:background="@color/pink">
+                android:background="@color/blue">
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
@@ -112,7 +112,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@color/pink"
+                    android:background="@color/blue"
                     android:textColor="@color/white"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
