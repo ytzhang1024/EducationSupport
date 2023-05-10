@@ -6,16 +6,16 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:id="@+id/item_layout">
+
     <TextView
         android:id="@+id/course_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="CourseName"
         android:textSize="25dp"
         android:textStyle="bold"
-        android:textColor="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,7 +33,6 @@
             android:layout_marginTop="44dp"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:textColor="@color/sallow_blue"
             android:text="DescriptionDescriptionDescription"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
