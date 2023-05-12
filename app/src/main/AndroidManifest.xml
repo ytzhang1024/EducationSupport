@@ -76,6 +76,7 @@
             android:label="Create Module" />
         <activity
             android:name=".ui.course.ResultActivity"
+            android:label="Result"
             android:exported="false" />
         <activity
             android:name=".ui.base.Module"
