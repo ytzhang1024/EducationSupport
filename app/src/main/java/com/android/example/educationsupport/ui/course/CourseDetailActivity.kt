@@ -61,12 +61,9 @@ class CourseDetailActivity : AppCompatActivity() {
                 println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
                 println(student_email)
                 if (courseName != null) {
-                    courseDetailViewModel.addStudent(student_email,courseName)
+                    courseDetailViewModel.addStudent(student_email, courseName)
                 }
-
             }
-
-
         }
         setContentView(binding.root)
 
