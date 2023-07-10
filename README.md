@@ -1,4 +1,3 @@
 # EducationSupport
 An android project for coursewrok
-
-Photo tool: https://photokit.com/colors/color-gradient/?lang=zh
+Tech stack: Android, Kotlin, Firebase, Jetpack, MVVM architecture
